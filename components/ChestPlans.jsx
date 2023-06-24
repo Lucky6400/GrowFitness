@@ -72,7 +72,7 @@ const ChestPlans = () => {
                     }}
                 >
                     <View style={styles.planCont}>
-                        <ScrollView contentContainerStyle={styles.modalView} style={styles.modalView}>
+                        <ScrollView contentContainerStyle={styles.modalView}>
                             <Image
                                 source={img}
                                 resizeMode="cover"
