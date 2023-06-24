@@ -119,5 +119,63 @@ export const styles = StyleSheet.create({
         backgroundColor: primaryLighter,
         marginRight: 15,
         borderRadius: 10
+    },
+    planCont: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#fff',
+        paddingVertical: 10,
+    },
+    exModalCont: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#fff',
+        paddingVertical: 10,
+    },
+    modalText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        width: '100%',
+        textAlign: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: primaryLighter,
+        textTransform: 'uppercase',
+        marginVertical: 15
+    },
+    planDesc: {
+        color: '#505050',
+        fontWeight: 500
+    },
+    exCard: {
+        width: '100%',
+        paddingBottom: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#dfdfdf',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        marginTop: 10
+    },
+    RestTime: {
+        fontSize: 32,
+        color: primary,
+        width: '100%',
+        textAlign: 'center',
+        marginVertical: 20
+    },
+    nextBtn: {
+        width: '100%',
+        backgroundColor: primary,
+        height: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    bigText: {
+        fontSize: 24,
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    modalView: {
+        paddingBottom: 60
     }
 })

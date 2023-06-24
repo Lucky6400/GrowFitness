@@ -7,17 +7,22 @@ import Plans from '../components/Plans'
 import { ScrollView } from 'react-native'
 import SchedulePlanner from '../components/SchedulePlanner'
 import Schedules from '../components/Schedules'
+import ChestPlans from '../components/ChestPlans'
+import ArmPlans from '../components/ArmPlans'
+import AbsPlans from '../components/AbsPlans'
+import ShoulderPlans from '../components/ShoulderPlans'
+import LegPlans from '../components/LegPlans'
 
 const ExploreScreen = () => {
   return (
     <ScrollView style={styles.container}>
-      <SchedulePlanner/>
+      <SchedulePlanner />
       <Schedules />
-      <Plans name={"Dominating Chest Development"} type="Chest" img={img01}/>
-      <Plans name={"Guns of steel workout"} type="Arm" img={img02} />
-      <Plans name={"Core Crusher Routine"} type="Abs" img={img01}/>
-      <Plans name={"Sculpted Lower Body Circuit"} type="Legs" img={img02} />
-      <Plans name={"Shoulder and Back Workout"} type="Shoulder & back" img={img02} />
+      <ChestPlans />
+      <ArmPlans />
+      <AbsPlans />
+      <ShoulderPlans />
+      <LegPlans />
     </ScrollView>
   )
 }
