@@ -1,9 +1,8 @@
 import { StyleSheet } from "react-native";
-import { primary, secondary } from "./theme";
+import { primary, primaryLighter, secondary } from "./theme";
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#fff'
     },
     homeHero: {
@@ -67,6 +66,7 @@ export const styles = StyleSheet.create({
         borderBottomWidth: 1,
         paddingBottom: 10,
         marginTop: 20,
+        textTransform: 'capitalize'
     },
     continue: {
         width: '100%',
@@ -102,5 +102,22 @@ export const styles = StyleSheet.create({
         color: primary,
         textTransform: 'uppercase',
         fontWeight: 600
+    },
+    planDetails: {
+        fontWeight: 300,
+        textTransform: 'capitalize',
+        fontSize: 12,
+        color: "#fff",
+        marginHorizontal: 10
+    },
+    scheduler: {
+        padding: 10
+    },
+    sch01: {
+        width: 100,
+        height: 100,
+        backgroundColor: primaryLighter,
+        marginRight: 15,
+        borderRadius: 10
     }
 })
