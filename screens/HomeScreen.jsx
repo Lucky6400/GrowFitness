@@ -71,8 +71,41 @@ export default function HomeScreen({ navigation, route }) {
           Your current status
         </Text>
         <View style={styles.status}>
-
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={styles.h02}>
+              Current WEIGHT
+            </Text>
+            <Text>
+              62.00KG
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={styles.h02}>
+              Current HEIGHT
+            </Text>
+            <Text>
+              5ft. 7in
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={styles.h02}>
+              bmi
+            </Text>
+            <Text>
+              21.3
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={styles.h02}>
+              target weight
+            </Text>
+            <Text>
+              70.00KG
+            </Text>
+          </View>
         </View>
+
+
       </View>
     </ScrollView>
   )

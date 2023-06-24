@@ -56,7 +56,6 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 20,
         marginTop: -15,
-        height: 500,
         padding: 10,
         paddingTop: 10,
     },
@@ -91,5 +90,17 @@ export const styles = StyleSheet.create({
         height: 125,
         backgroundColor: primary,
         marginRight: 10
+    },
+    status: {
+        width: '100%',
+        borderWidth: 1,
+        borderColor: secondary,
+        borderRadius: 3,
+        padding: 10
+    },
+    h02: {
+        color: primary,
+        textTransform: 'uppercase',
+        fontWeight: 600
     }
 })
