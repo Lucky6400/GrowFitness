@@ -6,6 +6,8 @@ import ProfileScreen from './screens/ProfileScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import ExploreScreen from './screens/ExploreScreen';
+import ProgressScreen from './screens/Progress';
+import { primary, secondary } from './style/theme';
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
@@ -15,23 +17,39 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen
           options={{
-            tabBarIcon: ({ focused, color, size }) => <Icon name="home" size={32} color={focused ? "#2E7D32" : "#404040"} />,
-            tabBarLabel: ({ focused, color }) => <Text style={{ fontSize: 10, color: focused ? "#2E7D32" : "#404040" }}>Home</Text>,
-            headerShown: false,
+            tabBarIcon: ({ focused, color, size }) => <Icon name="home" size={32} color={focused ? primary : secondary} />,
+            tabBarLabel: ({ focused, color }) => <Text style={{ fontSize: 10, color: focused ? primary : secondary }}>Home</Text>,
+            headerTitle: () => <View style={{ flexDirection: 'row' }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#000' }}>GROW</Text><Text style={{ fontWeight: 'bold', fontSize: 20, color: primary }}>FITNESS</Text>
+            </View>
+
           }}
           name="Home" component={HomeScreen} />
         <Tab.Screen
           options={{
-            tabBarIcon: ({ focused, color, size }) => <Icon name="arm-flex" size={32} color={focused ? "#2E7D32" : "#404040"} />,
-            tabBarLabel: ({ focused, color }) => <Text style={{ fontSize: 10, color: focused ? "#2E7D32" : "#404040" }}>Explore</Text>,
-            headerShown: false,
+            tabBarIcon: ({ focused, color, size }) => <Icon name="arm-flex" size={32} color={focused ? primary : secondary} />,
+            tabBarLabel: ({ focused, color }) => <Text style={{ fontSize: 10, color: focused ? primary : secondary }}>Explore</Text>,
+            headerTitle: () => <View style={{ flexDirection: 'row' }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#000' }}>GROW</Text><Text style={{ fontWeight: 'bold', fontSize: 20, color: primary }}>FITNESS</Text>
+            </View>
           }}
           name="Explore" component={ExploreScreen} />
         <Tab.Screen
           options={{
-            tabBarIcon: ({ focused, color, size }) => <Icon name="account" size={32} color={focused ? "#2E7D32" : "#404040"} />,
-            tabBarLabel: ({ focused, color }) => <Text style={{ fontSize: 10, color: focused ? "#2E7D32" : "#404040" }}>Profile</Text>,
-            headerShown: false,
+            tabBarIcon: ({ focused, color, size }) => <Icon name="progress-star" size={32} color={focused ? primary : secondary} />,
+            tabBarLabel: ({ focused, color }) => <Text style={{ fontSize: 10, color: focused ? primary : secondary }}>Progress</Text>,
+            headerTitle: () => <View style={{ flexDirection: 'row' }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#000' }}>GROW</Text><Text style={{ fontWeight: 'bold', fontSize: 20, color: primary }}>FITNESS</Text>
+            </View>
+          }}
+          name="Progress" component={ProgressScreen} />
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({ focused, color, size }) => <Icon name="account" size={32} color={focused ? primary : secondary} />,
+            tabBarLabel: ({ focused, color }) => <Text style={{ fontSize: 10, color: focused ? primary : secondary }}>Profile</Text>,
+            headerTitle: () => <View style={{ flexDirection: 'row' }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#000' }}>GROW</Text><Text style={{ fontWeight: 'bold', fontSize: 20, color: primary }}>FITNESS</Text>
+            </View>
           }}
           name="Profile" component={ProfileScreen} />
 
@@ -40,15 +58,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  bottomNavText: {
-    fontSize: 10
-  }
-});

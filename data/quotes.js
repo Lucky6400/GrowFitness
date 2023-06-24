@@ -1,0 +1,22 @@
+export const gymMotivationalQuotes = [
+    "The only bad workout is the one that didn't happen.",
+    "Strive for progress, not perfection.",
+    "Success starts with self-discipline.",
+    "The body achieves what the mind believes.",
+    "Train like a beast, look like a beauty.",
+    "Don't wish for it, work for it.",
+    "Your body can stand almost anything. It's your mind that you have to convince.",
+    "The only limit is the one you set yourself.",
+    "Sweat is fat crying.",
+    "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+    "Push yourself because no one else is going to do it for you.",
+    "Pain is temporary. Quitting lasts forever.",
+    "Your fitness is 100% mental. Your body won't go where your mind doesn't push it.",
+    "The pain you feel today will be the strength you feel tomorrow.",
+    "Champions aren't made in the gyms. Champions are made from something they have deep inside them—a desire, a dream, a vision.",
+    "Strength doesn't come from what you can do. It comes from overcoming the things you once thought you couldn't.",
+    "The difference between try and triumph is just a little umph!",
+    "The only person you should try to be better than is the person you were yesterday.",
+    "Success is what comes after you stop making excuses.",
+    "Don't stop until you're proud."
+];
