@@ -177,5 +177,84 @@ export const styles = StyleSheet.create({
     },
     modalView: {
         paddingBottom: 60
+    },
+    reps: {
+        fontSize: 40,
+        color: "#fff",
+        width: 100,
+        height: 100,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        backgroundColor: primary,
+        alignSelf: 'center',
+        textAlignVertical: 'center',
+        borderRadius: 100,
+        marginTop: 20
+    },
+    plusBtn: {
+        width: 50,
+        height: 50,
+        backgroundColor: primary,
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        borderRadius: 100,
+        position: 'absolute',
+        bottom: 20,
+        right: 20
+    },
+    addPlanCont: {
+        backgroundColor: '#fff',
+        flex: 1
+    },
+    inputStyle: {
+        borderWidth: 1, borderColor: secondary, marginHorizontal: 10, padding: 5, borderRadius: 5,
+        marginVertical: 5, textAlignVertical: 'top'
+    },
+    customPlanHeading: {
+        margin: 10,
+        fontSize: 16,
+        fontWeight: 500,
+    },
+    addEx: {
+        backgroundColor: primary,
+        width: 220,
+        alignItems: 'center',
+        alignSelf: 'center',
+        padding: 10,
+        borderRadius: 100,
+        marginBottom: 10
+    },
+    addExTxt: {
+        fontSize: 20,
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    exCont: {
+        flex: 1,
+        backgroundColor: '#0000004c',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    exView: {
+        backgroundColor: '#fff',
+        width: '90%',
+        height: 400,
+        padding: 10
+    },
+    exListCard: {
+        width: '100%',
+        borderWidth: 1,
+        borderColor: secondary,
+        borderRadius: 5,
+        padding: 5,
+        marginVertical: 5
+    },
+    exDesc: {
+        fontSize: 12,
+        fontWeight: 600,
+        color: secondary
     }
 })

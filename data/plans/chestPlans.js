@@ -204,11 +204,7 @@ export const chestPlans = [
                 ...chestEx[11],
                 reps: 12,
                 type: 'work'
-            },
-            {
-                type: 'rest',
-                time: 30
-            },
+            }
         ]
     }
 ]

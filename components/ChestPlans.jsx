@@ -128,6 +128,8 @@ const ChestPlans = () => {
                                         <Text style={styles.planDesc}>
                                             {chestPlans[idx]?.exercises[exIdx]?.description}
                                         </Text>
+                                        <Text style={styles.reps}>{chestPlans[idx]?.exercises[exIdx]?.reps}</Text>
+                                        <Text style={styles.RestTime}>{"Reps"}</Text>
                                     </>
                                 ) : (
                                     <>
