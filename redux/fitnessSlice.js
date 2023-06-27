@@ -8,7 +8,9 @@ export const fitnessSlice = createSlice({
     name: 'fitness',
     initialState,
     reducers: {
-
+        addPlan(state, action) {
+            state.customPlans.push(action.payload)
+        }
     }
 })
 

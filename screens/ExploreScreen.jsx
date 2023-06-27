@@ -20,16 +20,23 @@ import { primary, primaryTransparent, secondary } from '../style/theme'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 import { Button } from 'react-native'
 import { chestEx } from '../data/exerciseTypes/chest'
+import { useDispatch } from 'react-redux'
+import { fitnessActions } from '../redux/fitnessSlice'
+import CustomPlans from '../components/CustomPlans'
+import { Alert } from 'react-native'
 
 const ExploreScreen = () => {
   const [visible, setVisible] = useState(false);
   const [exVisible, setExVisible] = useState(false);
+  const [restVisible, setRestVisible] = useState(false);
   const [planName, setPlanName] = useState("");
   const [planDesc, setPlanDesc] = useState("");
+  const [restTime, setRestTime] = useState(0);
   const [planLevel, setPlanLevel] = useState("");
   const [noOfReps, setNoOfReps] = useState(0);
   const [exercises, setExercises] = useState([]);
   const [currEx, setCurrEx] = useState(null);
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
@@ -41,6 +48,7 @@ const ExploreScreen = () => {
         <AbsPlans />
         <ShoulderPlans />
         <LegPlans />
+        <CustomPlans />
       </ScrollView>
 
       <Modal
@@ -84,7 +92,7 @@ const ExploreScreen = () => {
 
               <Text style={styles.customPlanHeading}>Exercises:</Text>
               {exercises[exercises.length - 1]?.type === 'work' ?
-                <TouchableOpacity onPress={() => setExVisible(true)} style={styles.addEx}>
+                <TouchableOpacity onPress={() => setRestVisible(true)} style={styles.addEx}>
                   <Text style={styles.addExTxt}>
                     Add Rest
                   </Text>
@@ -106,16 +114,98 @@ const ExploreScreen = () => {
                   }}
                   style={{ ...styles.exListCard, width: '95%', alignSelf: 'center' }}>
                   <Text>
-                    {v.name}
+                    {v.type === 'work' ? v.name : `Rest Time ${v.time}s`}
                   </Text>
-                  <Text style={styles.exDesc}>
-                    {v.description?.slice(0, 80) + "..."}
-                  </Text>
-                  <Text>
-                    Reps: {v.reps}
-                  </Text>
+
+                  {v.type === 'work' ?
+                    <>
+                      <Text style={styles.exDesc}>
+                        {v.type !== 'rest' && v?.description?.slice(0, 80) + "..."}
+                      </Text>
+
+                      <Text>
+                        Reps: {v.reps}
+                      </Text>
+                    </>
+                    :
+                    <></>
+                  }
+
+
+
                 </TouchableOpacity>
               )) : <></>}
+
+              <TouchableOpacity onPress={() => {
+                const payload = {
+                  name: planName,
+                  description: planDesc,
+                  level: planLevel,
+                  noOfExercises: exercises.filter(v => v.type === 'work').length,
+                  exercises: exercises
+                }
+
+                if (exercises[exercises.length - 1]?.type === 'rest') {
+                  Alert.alert("Rest cannot be at the end!");
+                  return null;
+                } else if (exercises.length === 0) {
+                  Alert.alert("Please add some exercises!")
+                  return null;
+                } else if (planName === "") {
+                  Alert.alert("Please add a plan name!")
+                  return null;
+                } else if(planDesc === "") {
+                  Alert.alert("Please add a plan description!")
+                  return null;
+                } else if (planLevel === "") {
+                  Alert.alert("Please select a plan level!")
+                  return null;
+                }
+
+
+                dispatch(fitnessActions.addPlan(payload));
+                setExercises([]);
+                setPlanName("");
+                setPlanDesc("");
+                setPlanLevel("");
+                setVisible(false);
+              }} style={styles.addEx}>
+                <Text style={styles.addExTxt}>
+                  Add Plan
+                </Text>
+              </TouchableOpacity>
+
+
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={restVisible}
+                onRequestClose={() => {
+                  setRestVisible(false);
+                }}>
+                <View style={styles.exCont}>
+                  <View style={{ ...styles.exView, height: 100 }}>
+                    <TextInput
+                      placeholder='Set rest time'
+                      keyboardType='numeric'
+                      onChangeText={e => setRestTime(e)}
+                      style={{ ...styles.inputStyle, textAlignVertical: 'center' }}
+                    />
+                    <Button
+                      disabled={restTime == 0}
+                      onPress={() => {
+                        setExercises(p => ([...p, {
+                          id: exercises.length + Date.now() + 1,
+                          time: parseInt(restTime),
+                          type: 'rest'
+                        }]));
+                        setRestVisible(false);
+                        setCurrEx(null);
+                      }}
+                      title="Done" color={primary} />
+                  </View>
+                </View>
+              </Modal>
 
               <Modal
                 animationType="slide"
