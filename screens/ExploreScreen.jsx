@@ -20,27 +20,36 @@ import { primary, primaryTransparent, secondary } from '../style/theme'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 import { Button } from 'react-native'
 import { chestEx } from '../data/exerciseTypes/chest'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fitnessActions } from '../redux/fitnessSlice'
 import CustomPlans from '../components/CustomPlans'
 import { Alert } from 'react-native'
+import { useEffect } from 'react'
 
 const ExploreScreen = () => {
-  const [visible, setVisible] = useState(false);
+  const currentPlan = useSelector(s => s.fitness.currentPlan)
+  const modalVisible = useSelector(s => s.fitness.modalVisible)
   const [exVisible, setExVisible] = useState(false);
   const [restVisible, setRestVisible] = useState(false);
-  const [planName, setPlanName] = useState("");
-  const [planDesc, setPlanDesc] = useState("");
+  const [planName, setPlanName] = useState(currentPlan ? currentPlan.name : "");
+  const [planDesc, setPlanDesc] = useState(currentPlan ? currentPlan.description : "");
   const [restTime, setRestTime] = useState(0);
-  const [planLevel, setPlanLevel] = useState("");
+  const [planLevel, setPlanLevel] = useState(currentPlan ? currentPlan.level : "");
   const [noOfReps, setNoOfReps] = useState(0);
-  const [exercises, setExercises] = useState([]);
+  const [exercises, setExercises] = useState(currentPlan ? currentPlan.exercises : []);
   const [currEx, setCurrEx] = useState(null);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    //console.log(currentPlan)
+    setPlanName(currentPlan ? currentPlan.name : "");
+    setPlanLevel(currentPlan ? currentPlan.level : "");
+    setPlanDesc(currentPlan ? currentPlan.description : "");
+    setExercises(currentPlan ? currentPlan.exercises : []);
+  }, [currentPlan])
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
         <SchedulePlanner />
         <Schedules />
         <ChestPlans />
@@ -54,9 +63,10 @@ const ExploreScreen = () => {
       <Modal
         animationType="slide"
         transparent={true}
-        visible={visible}
+        visible={modalVisible}
         onRequestClose={() => {
-          setVisible(false);
+          dispatch(fitnessActions.setCurrentPlan(null));
+          dispatch(fitnessActions.setModalVisible(false));
         }}>
         <View style={styles.addPlanCont}>
           <View style={styles.modalView}>
@@ -65,6 +75,7 @@ const ExploreScreen = () => {
             <ScrollView>
               <TextInput
                 placeholder="Plan Name"
+                defaultValue={planName}
                 style={{ ...styles.inputStyle, textAlignVertical: 'center' }}
                 onChangeText={e => setPlanName(e)}
               />
@@ -72,6 +83,7 @@ const ExploreScreen = () => {
               <TextInput
                 placeholder="Plan Description"
                 multiline
+                defaultValue={planDesc}
                 numberOfLines={5}
                 style={styles.inputStyle}
                 onChangeText={e => setPlanDesc(e)}
@@ -154,7 +166,7 @@ const ExploreScreen = () => {
                 } else if (planName === "") {
                   Alert.alert("Please add a plan name!")
                   return null;
-                } else if(planDesc === "") {
+                } else if (planDesc === "") {
                   Alert.alert("Please add a plan description!")
                   return null;
                 } else if (planLevel === "") {
@@ -162,16 +174,20 @@ const ExploreScreen = () => {
                   return null;
                 }
 
-
-                dispatch(fitnessActions.addPlan(payload));
+                if (currentPlan) {
+                  dispatch(fitnessActions.editPlan({ ...payload, oldName: currentPlan.name }))
+                } else {
+                  dispatch(fitnessActions.addPlan(payload));
+                }
+                dispatch(fitnessActions.setCurrentPlan(null));
                 setExercises([]);
                 setPlanName("");
                 setPlanDesc("");
                 setPlanLevel("");
-                setVisible(false);
+                dispatch(fitnessActions.setModalVisible(false));
               }} style={styles.addEx}>
                 <Text style={styles.addExTxt}>
-                  Add Plan
+                  Submit
                 </Text>
               </TouchableOpacity>
 
@@ -255,7 +271,13 @@ const ExploreScreen = () => {
 
 
 
-      <TouchableOpacity onPress={() => setVisible(true)} style={styles.plusBtn}>
+      <TouchableOpacity onPress={() => {
+        setExercises([]);
+        setPlanName("");
+        setPlanDesc("");
+        setPlanLevel("");
+        dispatch(fitnessActions.setModalVisible(true))
+      }} style={styles.plusBtn}>
         <Icon name="plus" size={32} color="#fff" />
       </TouchableOpacity>
 

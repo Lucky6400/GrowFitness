@@ -9,7 +9,10 @@ import { Modal } from 'react-native';
 import { Image } from 'react-native';
 import { Button } from 'react-native';
 import { primary } from '../style/theme';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fitnessActions } from '../redux/fitnessSlice';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as Speech from 'expo-speech';
 
 const CustomPlans = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -19,6 +22,10 @@ const CustomPlans = () => {
     const [exIdx, setExIdx] = useState(0);
     const [restTime, setRestTime] = useState(customPlans[idx]?.exercises[exIdx]?.time || 0);
 
+    const speak = (text) => {
+      //  const thingToSay = '1';
+        Speech.speak(text);
+    };
     useEffect(() => {
         let timer;
         if (restTime > 0) {
@@ -40,6 +47,8 @@ const CustomPlans = () => {
         return () => clearTimeout(timer);
     }, [restTime, exIdx, idx]);
 
+    const dispatch = useDispatch();
+
     return (
         <>
             <Text style={styles.h01}>Custom plans</Text>
@@ -50,14 +59,34 @@ const CustomPlans = () => {
                         source={img}
                         resizeMode="cover"
                         style={styles.wrk01}
+
                     >
                         <TouchableOpacity
                             onPress={() => {
                                 setIdx(i);
                                 setModalVisible(true);
+
                             }}
+                            activeOpacity={0.8}
                             style={{ ...styles.homeHero, backgroundColor: '#000' }}
                         ></TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                dispatch(fitnessActions.setCurrentPlan({ ...v, index: i }));
+                                dispatch(fitnessActions.setModalVisible(true));
+                            }}
+                            style={styles.editBtn}>
+                            <Icon name="edit" size={24} color="#fff" />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={() => {
+                                dispatch(fitnessActions.deletePlan(v));
+                            }}
+                            style={{ ...styles.editBtn, top: 50, backgroundColor: '#b30f00' }}>
+                            <Icon name="delete" size={24} color="#fff" />
+                        </TouchableOpacity>
+
                         <Text style={styles.workoutName}>{v.name}</Text>
                         <Text style={styles.planDetails}>{v.level} Level</Text>
                         <Text style={styles.planDetails}>{v.noOfExercises} Exercises</Text>
@@ -109,6 +138,8 @@ const CustomPlans = () => {
                                 onPress={() => {
                                     setExIdx(0);
                                     setExModalVisible(true);
+                                    speak(`Ready to go! First exercise ${customPlans[idx]?.exercises[0]?.name}`)
+                                  //  Speech.speak(`Ready to go`)
                                 }}
                                 color={primary}
                                 title="Start"
@@ -150,6 +181,12 @@ const CustomPlans = () => {
                                             onPress={() => {
                                                 setExIdx(prevIdx => prevIdx + 1);
                                                 setRestTime(customPlans[idx]?.exercises[exIdx + 1]?.time || 0);
+                                                if(customPlans[idx]?.exercises[exIdx + 1].type === 'work') {
+                                                    speak(`${customPlans[idx]?.exercises[exIdx].reps} ${customPlans[idx]?.exercises[exIdx].name}`)
+                                                } else {
+                                                    speak('Take a rest');
+                                                }
+                                                
                                             }}
                                         >
                                             <Text style={styles.bigText}>Next</Text>

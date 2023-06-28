@@ -256,5 +256,16 @@ export const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: 600,
         color: secondary
+    },
+    editBtn: {
+        position: 'absolute',
+        top: 5,
+        right: 5,
+        width: 40,
+        height: 40,
+        borderRadius: 30,
+        backgroundColor: '#000',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })
