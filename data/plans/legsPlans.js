@@ -1,14 +1,14 @@
-import { chestEx } from "../exerciseTypes/chest";
+import { legExercises } from "../exerciseTypes/legs";
 
-export const chestPlans = [
+export const legPlans = [
     {
-        name: 'Newbie Chest Workout',
+        name: 'Leg Sculptor',
         level: 'Beginner',
-        description: 'This beginner-level chest workout is designed to help newcomers build strength and muscle in their chest. It includes a combination of bodyweight exercises and dumbbell presses to target the chest muscles from various angles. The workout consists of 8 exercises with 8 reps each, followed by 30 seconds of rest between sets.',
+        description: "Get ready to sculpt and tone your legs with this beginner-level leg workout plan. Designed to target all major leg muscles, this plan incorporates a combination of bodyweight exercises and dumbbell movements. Whether you're looking to build strength or enhance muscle definition, this workout consisting of 10 exercises will help you achieve your leg goals.",
         noOfExercises: 8,
         exercises: [
             {
-                ...chestEx[15],
+                ...legExercises[15],
                 reps: 8,
                 type: 'work'
             },
@@ -17,7 +17,7 @@ export const chestPlans = [
                 time: 10
             },
             {
-                ...chestEx[0],
+                ...legExercises[0],
                 reps: 8,
                 type: 'work'
             },
@@ -26,7 +26,7 @@ export const chestPlans = [
                 time: 10
             },
             {
-                ...chestEx[1],
+                ...legExercises[1],
                 reps: 8,
                 type: 'work'
             },
@@ -35,7 +35,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[4],
+                ...legExercises[4],
                 reps: 8,
                 type: 'work'
             },
@@ -44,7 +44,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[15],
+                ...legExercises[15],
                 reps: 8,
                 type: 'work'
             },
@@ -53,7 +53,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[0],
+                ...legExercises[0],
                 reps: 8,
                 type: 'work'
             },
@@ -62,7 +62,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[1],
+                ...legExercises[1],
                 reps: 8,
                 type: 'work'
             },
@@ -71,20 +71,20 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[4],
+                ...legExercises[4],
                 reps: 8,
                 type: 'work'
             }
         ]
     },
     {
-        name: 'Ultimate Chest Pump',
+        name: "Leg Shredder",
         level: 'Intermediate',
         noOfExercises: 14,
-        description: 'Get ready for an intense chest pump with this intermediate-level workout. The Ultimate Chest Pump routine focuses on maximizing muscle growth and strength in the chest. It incorporates a variety of exercises, including push-ups, flyes, and presses, to challenge the chest muscles from different perspectives. Each exercise consists of higher reps for increased muscle endurance. Take 30 seconds of rest between sets to recover.',
+        description: "Take your leg training to the next level with the intermediate-level leg shredder plan. This intense workout routine is designed to challenge your leg muscles and promote muscle growth. Featuring a mix of weighted exercises and advanced bodyweight movements, this plan consisting of 12 exercises will push your leg endurance and help you achieve a sculpted lower body.",
         exercises: [
             {
-                ...chestEx[15],
+                ...legExercises[15],
                 reps: 12,
                 type: 'work'
             },
@@ -93,7 +93,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[16],
+                ...legExercises[16],
                 reps: 10,
                 type: 'work'
             },
@@ -102,7 +102,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[17],
+                ...legExercises[17],
                 reps: 10,
                 type: 'work'
             },
@@ -111,7 +111,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[0],
+                ...legExercises[0],
                 reps: 14,
                 type: 'work'
             },
@@ -120,7 +120,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[1],
+                ...legExercises[1],
                 reps: 14,
                 type: 'work'
             },
@@ -129,7 +129,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[10],
+                ...legExercises[10],
                 reps: 12,
                 type: 'work'
             },
@@ -138,7 +138,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[11],
+                ...legExercises[11],
                 reps: 12,
                 type: 'work'
             },
@@ -147,7 +147,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[15],
+                ...legExercises[15],
                 reps: 12,
                 type: 'work'
             },
@@ -156,7 +156,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[16],
+                ...legExercises[16],
                 reps: 10,
                 type: 'work'
             },
@@ -165,7 +165,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[17],
+                ...legExercises[17],
                 reps: 10,
                 type: 'work'
             },
@@ -174,7 +174,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[0],
+                ...legExercises[0],
                 reps: 14,
                 type: 'work'
             },
@@ -183,7 +183,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[1],
+                ...legExercises[1],
                 reps: 14,
                 type: 'work'
             },
@@ -192,7 +192,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[10],
+                ...legExercises[10],
                 reps: 12,
                 type: 'work'
             },
@@ -201,7 +201,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[11],
+                ...legExercises[11],
                 reps: 12,
                 type: 'work'
             }

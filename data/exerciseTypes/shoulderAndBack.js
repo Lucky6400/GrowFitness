@@ -1,0 +1,155 @@
+export const shoulderAndBackExercises = [
+    // Dumbbell Exercises
+    {
+        id: 0,
+        name: 'Dumbbell Shoulder Press',
+        equipment: 'Dumbbells',
+        description: 'Stand or sit with dumbbells in hand at shoulder level. Press the dumbbells overhead, fully extending your arms. Lower the dumbbells back to shoulder level.',
+    },
+    {
+        id: 1,
+        name: 'Dumbbell Lateral Raises',
+        equipment: 'Dumbbells',
+        description: 'Stand with dumbbells in hand by your sides. Raise your arms out to the sides until they are parallel to the ground, then lower them back down.',
+    },
+    {
+        id: 2,
+        name: 'Dumbbell Bent-Over Rows',
+        equipment: 'Dumbbells',
+        description: 'Hold a dumbbell in each hand, hinge forward at the hips, keeping your back straight. Pull the dumbbells up towards your chest, squeezing your shoulder blades together, then lower them back down.',
+    },
+    {
+        id: 3,
+        name: 'Dumbbell Front Raises',
+        equipment: 'Dumbbells',
+        description: 'Stand with dumbbells in hand by your thighs. Lift the dumbbells in front of you, keeping your arms straight, until they are parallel to the ground, then lower them back down.',
+    },
+    {
+        id: 4,
+        name: 'Dumbbell Shrugs',
+        equipment: 'Dumbbells',
+        description: 'Stand with dumbbells in hand by your sides. Shrug your shoulders up towards your ears, then lower them back down in a controlled manner.',
+    },
+    {
+        id: 5,
+        name: 'Dumbbell Reverse Flyes',
+        equipment: 'Dumbbells',
+        description: 'Bend forward at the hips with dumbbells in hand, arms extended straight down. Raise your arms out to the sides, squeezing your shoulder blades together, then lower them back down.',
+    },
+    {
+        id: 6,
+        name: 'Dumbbell Renegade Rows',
+        equipment: 'Dumbbells',
+        description: 'Start in a high plank position with each hand gripping a dumbbell. Pull one dumbbell up towards your chest while keeping your core engaged and hips stable. Lower the dumbbell back down and repeat on the other side.',
+    },
+    {
+        id: 7,
+        name: 'Dumbbell Upright Rows',
+        equipment: 'Dumbbells',
+        description: 'Stand with dumbbells in hand in front of your thighs. Pull the dumbbells straight up towards your chin, leading with your elbows, then lower them back down.',
+    },
+    {
+        id: 8,
+        name: 'Dumbbell Reverse Grip Rows',
+        equipment: 'Dumbbells',
+        description: 'Hold dumbbells with an underhand grip, bend forward at the hips, and keep your back straight. Pull the dumbbells up towards your waist, squeezing your shoulder blades together, then lower them back down.',
+    },
+    {
+        id: 9,
+        name: 'Dumbbell Arnold Press',
+        equipment: 'Dumbbells',
+        description: 'Start with dumbbells in front of your shoulders, palms facing your body. Press the dumbbells overhead while rotating your palms to face forward. Lower the dumbbells back down, reversing the motion.',
+    },
+    {
+        id: 10,
+        name: 'Dumbbell High Pulls',
+        equipment: 'Dumbbells',
+        description: 'Hold dumbbells in front of your thighs, palms facing your body. Pull the dumbbells up towards your shoulders, leading with your elbows, then lower them back down.',
+    },
+    {
+        id: 11,
+        name: 'Dumbbell Reverse Lunges',
+        equipment: 'Dumbbells',
+        description: 'Hold dumbbells in your hands by your sides. Step back with one leg and lower your body into a lunge position. Push through your front heel to return to the starting position, then repeat on the other side.',
+    },
+    {
+        id: 12,
+        name: 'Dumbbell Farmer\'s Walk',
+        equipment: 'Dumbbells',
+        description: 'Hold a dumbbell in each hand by your sides. Walk forward while maintaining an upright posture and engaging your core.',
+    },
+    {
+        id: 13,
+        name: 'Dumbbell Push Press',
+        equipment: 'Dumbbells',
+        description: 'Hold dumbbells at shoulder level, palms facing forward. Bend your knees slightly and explosively press the dumbbells overhead, using your legs to assist in the movement.',
+    },
+    {
+        id: 14,
+        name: 'Dumbbell Reverse Grip Press',
+        equipment: 'Dumbbells',
+        description: 'Lie on your back with dumbbells in hand, palms facing towards your feet. Press the dumbbells up towards the ceiling, then lower them back down.',
+    },
+    // Bodyweight Exercises
+    {
+        id: 15,
+        name: 'Push-Ups',
+        equipment: 'Bodyweight',
+        description: 'Assume a plank position with hands shoulder-width apart. Lower your body until your chest nearly touches the floor, then push yourself back up to the starting position.',
+    },
+    {
+        id: 16,
+        name: 'Pull-Ups',
+        equipment: 'Bodyweight',
+        description: 'Hang from a bar with your hands shoulder-width apart. Pull your body up until your chin is above the bar, then lower yourself back down to the starting position.',
+    },
+    {
+        id: 17,
+        name: 'Plank',
+        equipment: 'Bodyweight',
+        description: 'Assume a push-up position with your forearms resting on the ground. Keep your body in a straight line from head to heels, engaging your core and holding the position for the desired time.',
+    },
+    {
+        id: 18,
+        name: 'Supermans',
+        equipment: 'Bodyweight',
+        description: 'Lie face down on the ground with arms extended overhead. Lift your arms, chest, and legs off the ground, squeezing your shoulder blades together, then lower them back down.',
+    },
+    {
+        id: 19,
+        name: 'Mountain Climbers',
+        equipment: 'Bodyweight',
+        description: 'Assume a push-up position. Bring one knee towards your chest, then extend it back while simultaneously bringing the other knee towards your chest in a running motion.',
+    },
+    {
+        id: 20,
+        name: 'Inverted Rows',
+        equipment: 'Bodyweight',
+        description: 'Set up a bar at waist height. Lie under the bar and grab it with an overhand grip. Keep your body straight and pull your chest up towards the bar, then lower yourself back down.',
+    },
+    {
+        id: 21,
+        name: 'Bridge',
+        equipment: 'Bodyweight',
+        description: 'Lie on your back with knees bent and feet flat on the ground. Push through your heels to lift your hips off the ground, creating a straight line from your knees to your shoulders.',
+    },
+    {
+        id: 22,
+        name: 'Bird Dogs',
+        equipment: 'Bodyweight',
+        description: 'Start on all fours with hands under shoulders and knees under hips. Extend one arm out in front of you while extending the opposite leg behind you. Return to the starting position and repeat on the other side.',
+    },
+    {
+        id: 23,
+        name: 'Scapular Push-Ups',
+        equipment: 'Bodyweight',
+        description: 'Assume a push-up position with hands slightly wider than shoulder-width apart. Without bending your elbows, retract your shoulder blades and then protract them.',
+    },
+    {
+        id: 24,
+        name: 'Seated Rows',
+        equipment: 'Bodyweight',
+        description: 'Sit on the ground with legs extended, feet flexed. Grab your shins or ankles and lean back slightly. Pull your shoulder blades together and pull your torso towards your legs, then return to the starting position.',
+    },
+];
+

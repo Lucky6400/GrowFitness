@@ -5,18 +5,24 @@ import { ImageBackground } from 'react-native';
 import { styles } from '../style/styles';
 import { TouchableOpacity } from 'react-native';
 import img from '../assets/dumbbell-press.jpg';
-import { chestPlans } from '../data/plans/chestPlans';
 import { Modal } from 'react-native';
 import { Image } from 'react-native';
 import { Button } from 'react-native';
 import { primary } from '../style/theme';
 
-const ChestPlans = () => {
+import * as Speech from 'expo-speech';
+
+const speak = (text) => {
+    //  const thingToSay = '1';
+    Speech.speak(text);
+};
+
+const plans = ({ plans, title, image }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [exModalVisible, setExModalVisible] = useState(false);
     const [idx, setIdx] = useState(0);
     const [exIdx, setExIdx] = useState(0);
-    const [restTime, setRestTime] = useState(chestPlans[idx]?.exercises[exIdx]?.time || 0);
+    const [restTime, setRestTime] = useState(plans[idx]?.exercises[exIdx]?.time || 0);
 
     useEffect(() => {
         let timer;
@@ -26,11 +32,14 @@ const ChestPlans = () => {
             }, 1000);
         } else {
             // Move to the next exercise
-            if (exIdx < chestPlans[idx]?.exercises.length) {
-                if (chestPlans[idx]?.exercises[exIdx]?.type === 'rest') {
+            if (exIdx < plans[idx]?.exercises.length) {
+                if (plans[idx]?.exercises[exIdx]?.type === 'rest') {
                     setExIdx(prevIdx => prevIdx + 1);
+                    if (plans[idx]?.exercises[exIdx + 1].type === 'work') {
+                        speak(`${plans[idx]?.exercises[exIdx + 1].reps} ${plans[idx]?.exercises[exIdx + 1].name}`)
+                    }
                 }
-                setRestTime(chestPlans[idx]?.exercises[exIdx]?.time || 0);
+                setRestTime(plans[idx]?.exercises[exIdx]?.time || 0);
             } else {
                 // End of exercises, close the modal
                 setExModalVisible(false);
@@ -41,12 +50,12 @@ const ChestPlans = () => {
 
     return (
         <>
-            <Text style={styles.h01}>Dominating Chest Development</Text>
+            <Text style={styles.h01}>{title}</Text>
             <ScrollView horizontal>
-                {chestPlans.map((v, i) => (
+                {plans.map((v, i) => (
                     <ImageBackground
                         key={i + Date.now()}
-                        source={img}
+                        source={image}
                         resizeMode="cover"
                         style={styles.wrk01}
                     >
@@ -74,16 +83,16 @@ const ChestPlans = () => {
                     <View style={styles.planCont}>
                         <ScrollView contentContainerStyle={styles.modalView}>
                             <Image
-                                source={img}
+                                source={image}
                                 resizeMode="cover"
                                 style={{ width: '100%', height: 200, marginVertical: 10 }}
                             />
-                            <Text style={styles.modalText}>{chestPlans[idx]?.name}</Text>
-                            <Text style={styles.planDesc}>{chestPlans[idx]?.description}</Text>
+                            <Text style={styles.modalText}>{plans[idx]?.name}</Text>
+                            <Text style={styles.planDesc}>{plans[idx]?.description}</Text>
 
                             <Text style={styles.h01}>exercises</Text>
 
-                            {chestPlans[idx]?.exercises
+                            {plans[idx]?.exercises
                                 .filter(v => v.type === 'work')
                                 .map((v, i) => (
                                     <View key={i + Date.now()} style={styles.exCard}>
@@ -105,6 +114,7 @@ const ChestPlans = () => {
                                 onPress={() => {
                                     setExIdx(0);
                                     setExModalVisible(true);
+                                    speak(`Ready to go! First exercise ${plans[idx]?.exercises[0]?.name}`)
                                 }}
                                 color={primary}
                                 title="Start"
@@ -120,15 +130,15 @@ const ChestPlans = () => {
                             }}
                         >
                             <View style={styles.exModalCont}>
-                                {chestPlans[idx]?.exercises[exIdx]?.type === 'work' ? (
+                                {plans[idx]?.exercises[exIdx]?.type === 'work' ? (
                                     <>
                                         <Text style={styles.modalText}>
-                                            {chestPlans[idx]?.exercises[exIdx]?.name}
+                                            {plans[idx]?.exercises[exIdx]?.name}
                                         </Text>
                                         <Text style={styles.planDesc}>
-                                            {chestPlans[idx]?.exercises[exIdx]?.description}
+                                            {plans[idx]?.exercises[exIdx]?.description}
                                         </Text>
-                                        <Text style={styles.reps}>{chestPlans[idx]?.exercises[exIdx]?.reps}</Text>
+                                        <Text style={styles.reps}>{plans[idx]?.exercises[exIdx]?.reps}</Text>
                                         <Text style={styles.RestTime}>{"Reps"}</Text>
                                     </>
                                 ) : (
@@ -140,12 +150,18 @@ const ChestPlans = () => {
                                 <View
                                     style={{ position: 'absolute', bottom: 0, width: '100%', height: 60 }}
                                 >
-                                    {exIdx < chestPlans[idx]?.exercises.length - 1 ? (
+                                    {exIdx < plans[idx]?.exercises.length - 1 ? (
                                         <TouchableOpacity
                                             style={styles.nextBtn}
                                             onPress={() => {
                                                 setExIdx(prevIdx => prevIdx + 1);
-                                                setRestTime(chestPlans[idx]?.exercises[exIdx + 1]?.time || 0);
+                                                setRestTime(plans[idx]?.exercises[exIdx + 1]?.time || 0);
+                                                if (plans[idx]?.exercises[exIdx + 1].type === 'work') {
+
+                                                    speak(`${plans[idx]?.exercises[exIdx + 1].reps} ${plans[idx]?.exercises[exIdx + 1].name}`)
+                                                } else {
+                                                    speak('Take a rest');
+                                                }
                                             }}
                                         >
                                             <Text style={styles.bigText}>Next</Text>
@@ -155,6 +171,7 @@ const ChestPlans = () => {
                                             style={styles.nextBtn}
                                             onPress={() => {
                                                 setExModalVisible(false);
+                                                speak(`Well done! Congratulations`)
                                             }}
                                         >
                                             <Text style={styles.bigText}>Done</Text>
@@ -170,4 +187,4 @@ const ChestPlans = () => {
     );
 };
 
-export default ChestPlans;
+export default plans;

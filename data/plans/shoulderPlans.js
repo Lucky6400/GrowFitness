@@ -1,14 +1,14 @@
-import { chestEx } from "../exerciseTypes/chest";
+import { shoulderAndBackExercises } from "../exerciseTypes/shoulderAndBack";
 
-export const chestPlans = [
+export const shoulderPlans = [
     {
-        name: 'Newbie Chest Workout',
+        name: 'Shoulder Strength Builder',
         level: 'Beginner',
-        description: 'This beginner-level chest workout is designed to help newcomers build strength and muscle in their chest. It includes a combination of bodyweight exercises and dumbbell presses to target the chest muscles from various angles. The workout consists of 8 exercises with 8 reps each, followed by 30 seconds of rest between sets.',
+        description: 'This beginner-level shoulder workout is designed to help build strength and enhance the development of shoulder muscles. It includes a combination of dumbbell exercises and bodyweight movements targeting the shoulders and back. The workout consists of 15 dumbbell exercises and 10 bodyweight exercises, focusing on improving overall shoulder strength and stability.',
         noOfExercises: 8,
         exercises: [
             {
-                ...chestEx[15],
+                ...shoulderAndBackExercises[15],
                 reps: 8,
                 type: 'work'
             },
@@ -17,7 +17,7 @@ export const chestPlans = [
                 time: 10
             },
             {
-                ...chestEx[0],
+                ...shoulderAndBackExercises[0],
                 reps: 8,
                 type: 'work'
             },
@@ -26,7 +26,7 @@ export const chestPlans = [
                 time: 10
             },
             {
-                ...chestEx[1],
+                ...shoulderAndBackExercises[1],
                 reps: 8,
                 type: 'work'
             },
@@ -35,7 +35,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[4],
+                ...shoulderAndBackExercises[4],
                 reps: 8,
                 type: 'work'
             },
@@ -44,7 +44,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[15],
+                ...shoulderAndBackExercises[15],
                 reps: 8,
                 type: 'work'
             },
@@ -53,7 +53,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[0],
+                ...shoulderAndBackExercises[0],
                 reps: 8,
                 type: 'work'
             },
@@ -62,7 +62,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[1],
+                ...shoulderAndBackExercises[1],
                 reps: 8,
                 type: 'work'
             },
@@ -71,20 +71,20 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[4],
+                ...shoulderAndBackExercises[4],
                 reps: 8,
                 type: 'work'
             }
         ]
     },
     {
-        name: 'Ultimate Chest Pump',
+        name: 'Shoulder and Back Toning',
         level: 'Intermediate',
         noOfExercises: 14,
-        description: 'Get ready for an intense chest pump with this intermediate-level workout. The Ultimate Chest Pump routine focuses on maximizing muscle growth and strength in the chest. It incorporates a variety of exercises, including push-ups, flyes, and presses, to challenge the chest muscles from different perspectives. Each exercise consists of higher reps for increased muscle endurance. Take 30 seconds of rest between sets to recover.',
+        description: 'Get ready for an intense shoulder and back toning workout with the "Shoulder and Back Toning" plan. This intermediate-level routine is designed to maximize muscle growth and strength in the shoulder and back areas. It incorporates a variety of dumbbell exercises and bodyweight movements, targeting different muscle groups within the shoulders and back. Each exercise consists of higher reps for increased muscle endurance. The plan consists of 15 dumbbell exercises and 10 bodyweight exercises, with rest periods of 30 seconds between sets.',
         exercises: [
             {
-                ...chestEx[15],
+                ...shoulderAndBackExercises[15],
                 reps: 12,
                 type: 'work'
             },
@@ -93,7 +93,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[16],
+                ...shoulderAndBackExercises[16],
                 reps: 10,
                 type: 'work'
             },
@@ -102,7 +102,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[17],
+                ...shoulderAndBackExercises[17],
                 reps: 10,
                 type: 'work'
             },
@@ -111,7 +111,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[0],
+                ...shoulderAndBackExercises[0],
                 reps: 14,
                 type: 'work'
             },
@@ -120,7 +120,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[1],
+                ...shoulderAndBackExercises[1],
                 reps: 14,
                 type: 'work'
             },
@@ -129,7 +129,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[10],
+                ...shoulderAndBackExercises[10],
                 reps: 12,
                 type: 'work'
             },
@@ -138,7 +138,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[11],
+                ...shoulderAndBackExercises[11],
                 reps: 12,
                 type: 'work'
             },
@@ -147,7 +147,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[15],
+                ...shoulderAndBackExercises[15],
                 reps: 12,
                 type: 'work'
             },
@@ -156,7 +156,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[16],
+                ...shoulderAndBackExercises[16],
                 reps: 10,
                 type: 'work'
             },
@@ -165,7 +165,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[17],
+                ...shoulderAndBackExercises[17],
                 reps: 10,
                 type: 'work'
             },
@@ -174,7 +174,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[0],
+                ...shoulderAndBackExercises[0],
                 reps: 14,
                 type: 'work'
             },
@@ -183,7 +183,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[1],
+                ...shoulderAndBackExercises[1],
                 reps: 14,
                 type: 'work'
             },
@@ -192,7 +192,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[10],
+                ...shoulderAndBackExercises[10],
                 reps: 12,
                 type: 'work'
             },
@@ -201,7 +201,7 @@ export const chestPlans = [
                 time: 30
             },
             {
-                ...chestEx[11],
+                ...shoulderAndBackExercises[11],
                 reps: 12,
                 type: 'work'
             }

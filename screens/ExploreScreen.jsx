@@ -5,10 +5,6 @@ import { ScrollView } from 'react-native'
 import SchedulePlanner from '../components/SchedulePlanner'
 import Schedules from '../components/Schedules'
 import ChestPlans from '../components/ChestPlans'
-import ArmPlans from '../components/ArmPlans'
-import AbsPlans from '../components/AbsPlans'
-import ShoulderPlans from '../components/ShoulderPlans'
-import LegPlans from '../components/LegPlans'
 import { TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Modal } from 'react-native'
@@ -17,7 +13,6 @@ import { Text } from 'react-native'
 import { TextInput } from 'react-native'
 import { Picker } from '@react-native-picker/picker';
 import { primary, primaryTransparent, secondary } from '../style/theme'
-import { TouchableHighlight } from 'react-native-gesture-handler'
 import { Button } from 'react-native'
 import { chestEx } from '../data/exerciseTypes/chest'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,6 +20,16 @@ import { fitnessActions } from '../redux/fitnessSlice'
 import CustomPlans from '../components/CustomPlans'
 import { Alert } from 'react-native'
 import { useEffect } from 'react'
+import { chestPlans } from '../data/plans/chestPlans'
+import { armPlans } from '../data/plans/armPlans'
+import img from '../assets/dumbbell-press.jpg';
+import armImg from '../assets/img01.jpg'
+import absImg from '../assets/abs.jpg'
+import shImg from '../assets/shoulder.jpg'
+import lgImg from '../assets/legs.jpg'
+import { absPlans } from '../data/plans/absPlans'
+import { shoulderPlans } from '../data/plans/shoulderPlans'
+import { legPlans } from '../data/plans/legsPlans'
 
 const ExploreScreen = () => {
   const currentPlan = useSelector(s => s.fitness.currentPlan)
@@ -52,11 +57,11 @@ const ExploreScreen = () => {
       <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
         <SchedulePlanner />
         <Schedules />
-        <ChestPlans />
-        <ArmPlans />
-        <AbsPlans />
-        <ShoulderPlans />
-        <LegPlans />
+        <ChestPlans plans={chestPlans} title={"Dominating Chest Development"} image={img} />
+        <ChestPlans plans={armPlans} title={" Core crusher routine"} image={armImg} />
+        <ChestPlans plans={absPlans} title={"Guns of steel"} image={absImg} />
+        <ChestPlans plans={shoulderPlans} title={"Shoulder and Back workout"} image={shImg} />
+        <ChestPlans plans={legPlans} title={"Sculpted lower body circuit"} image={lgImg} />
         <CustomPlans />
       </ScrollView>
 

@@ -37,6 +37,9 @@ const CustomPlans = () => {
             if (exIdx < customPlans[idx]?.exercises?.length) {
                 if (customPlans[idx]?.exercises[exIdx]?.type === 'rest') {
                     setExIdx(prevIdx => prevIdx + 1);
+                    if (customPlans[idx]?.exercises[exIdx + 1].type === 'work') {
+                        speak(`${customPlans[idx]?.exercises[exIdx + 1].reps} ${customPlans[idx]?.exercises[exIdx + 1].name}`)
+                    }
                 }
                 setRestTime(customPlans[idx]?.exercises[exIdx]?.time || 0);
             } else {
@@ -182,7 +185,7 @@ const CustomPlans = () => {
                                                 setExIdx(prevIdx => prevIdx + 1);
                                                 setRestTime(customPlans[idx]?.exercises[exIdx + 1]?.time || 0);
                                                 if(customPlans[idx]?.exercises[exIdx + 1].type === 'work') {
-                                                    speak(`${customPlans[idx]?.exercises[exIdx].reps} ${customPlans[idx]?.exercises[exIdx].name}`)
+                                                    speak(`${customPlans[idx]?.exercises[exIdx + 1].reps} ${customPlans[idx]?.exercises[exIdx + 1].name}`)
                                                 } else {
                                                     speak('Take a rest');
                                                 }
@@ -196,6 +199,7 @@ const CustomPlans = () => {
                                             style={styles.nextBtn}
                                             onPress={() => {
                                                 setExModalVisible(false);
+                                                speak(`Well Done! Congratulations!!`)
                                             }}
                                         >
                                             <Text style={styles.bigText}>Done</Text>
