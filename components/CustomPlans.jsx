@@ -68,7 +68,7 @@ const CustomPlans = () => {
                             onPress={() => {
                                 setIdx(i);
                                 setModalVisible(true);
-
+                                dispatch(fitnessActions.addToRecent(v));
                             }}
                             activeOpacity={0.8}
                             style={{ ...styles.homeHero, backgroundColor: '#000' }}

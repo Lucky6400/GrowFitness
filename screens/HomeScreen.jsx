@@ -7,8 +7,12 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { gymMotivationalQuotes } from '../data/quotes'
 import img01 from '../assets/img01.jpg'
 import { TouchableOpacity } from 'react-native'
+import { useSelector } from 'react-redux'
+import Plans from '../components/ChestPlans'
 
 export default function HomeScreen({ navigation, route }) {
+  const recentPlans = useSelector(s => s.fitness.recentPlans);
+  console.log(recentPlans);
 
   return (
     <ScrollView style={styles.container}>
@@ -50,22 +54,10 @@ export default function HomeScreen({ navigation, route }) {
           <View style={{ ...styles.workoutProgress, width: '70%' }}></View>
         </ImageBackground>
 
-        <Text style={styles.h01}>
-          Recently Done
-        </Text>
+        {recentPlans.length > 0 ?
+          <Plans title={"Recently Done"} plans={recentPlans} />
+          : <></>}
 
-        <ScrollView horizontal>
-
-          {Array.from({ length: 5 }, () => 0).map((v, i) => (
-            <ImageBackground key={i + Date.now()} source={img01} resizeMode='cover' style={styles.wrk01}>
-              <TouchableOpacity style={{ ...styles.homeHero, backgroundColor: '#000' }}></TouchableOpacity>
-              <Text style={styles.workoutName}>
-                Arms Workout - Dumbbells
-              </Text>
-            </ImageBackground>
-          ))}
-
-        </ScrollView>
 
         <Text style={styles.h01}>
           Your current status

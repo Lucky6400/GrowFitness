@@ -4,20 +4,20 @@ import { ScrollView } from 'react-native';
 import { ImageBackground } from 'react-native';
 import { styles } from '../style/styles';
 import { TouchableOpacity } from 'react-native';
-import img from '../assets/dumbbell-press.jpg';
 import { Modal } from 'react-native';
 import { Image } from 'react-native';
 import { Button } from 'react-native';
 import { primary } from '../style/theme';
-
 import * as Speech from 'expo-speech';
+import { useDispatch } from 'react-redux';
+import { fitnessActions } from '../redux/fitnessSlice';
 
 const speak = (text) => {
     //  const thingToSay = '1';
     Speech.speak(text);
 };
 
-const plans = ({ plans, title, image }) => {
+const Plans = ({ plans, title, image }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [exModalVisible, setExModalVisible] = useState(false);
     const [idx, setIdx] = useState(0);
@@ -48,6 +48,8 @@ const plans = ({ plans, title, image }) => {
         return () => clearTimeout(timer);
     }, [restTime, exIdx, idx]);
 
+    const dispatch = useDispatch();
+
     return (
         <>
             <Text style={styles.h01}>{title}</Text>
@@ -55,7 +57,7 @@ const plans = ({ plans, title, image }) => {
                 {plans.map((v, i) => (
                     <ImageBackground
                         key={i + Date.now()}
-                        source={image}
+                        source={v.image}
                         resizeMode="cover"
                         style={styles.wrk01}
                     >
@@ -63,6 +65,7 @@ const plans = ({ plans, title, image }) => {
                             onPress={() => {
                                 setIdx(i);
                                 setModalVisible(true);
+                                dispatch(fitnessActions.addToRecent(v))
                             }}
                             style={{ ...styles.homeHero, backgroundColor: '#000' }}
                         ></TouchableOpacity>
@@ -83,7 +86,7 @@ const plans = ({ plans, title, image }) => {
                     <View style={styles.planCont}>
                         <ScrollView contentContainerStyle={styles.modalView}>
                             <Image
-                                source={image}
+                                source={plans[idx].image}
                                 resizeMode="cover"
                                 style={{ width: '100%', height: 200, marginVertical: 10 }}
                             />
@@ -187,4 +190,4 @@ const plans = ({ plans, title, image }) => {
     );
 };
 
-export default plans;
+export default Plans;

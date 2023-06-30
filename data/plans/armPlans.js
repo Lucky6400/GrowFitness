@@ -1,8 +1,14 @@
 import { armEx } from "../exerciseTypes/arms";
+import img from '../../assets/dumbbell-press.jpg';
+import armImg from '../../assets/img01.jpg'
+import absImg from '../../assets/abs.jpg'
+import shImg from '../../assets/shoulder.jpg'
+import lgImg from '../../assets/legs.jpg'
 
 export const armPlans = [
     {
         name: 'Arm Novice',
+        image: armImg,
         level: 'Beginner',
         description: 'This beginner-level arm workout is designed to help newcomers build strength and muscle in their arm. It includes a combination of bodyweight exercises and dumbbell presses to target the arm muscles from various angles. The workout consists of 8 exercises with 8 reps each, followed by some seconds of rest between sets.',
         noOfExercises: 8,
@@ -80,6 +86,7 @@ export const armPlans = [
     {
         name: 'Power punch arms',
         level: 'Intermediate',
+        image: armImg,
         noOfExercises: 14,
         description: 'Get ready for an intense arm pump with this intermediate-level workout. The Ultimate arm Pump routine focuses on maximizing muscle growth and strength in the arm. It incorporates a variety of exercises, including push-ups, curls, and dips, to challenge the arm muscles from different perspectives. Each exercise consists of higher reps for increased muscle endurance. Take some seconds of rest between sets to recover.',
         exercises: [
