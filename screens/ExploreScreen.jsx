@@ -62,8 +62,8 @@ const ExploreScreen = () => {
         <SchedulePlanner />
         <Schedules />
         <ChestPlans plans={chestPlans} title={"Dominating Chest Development"} />
-        <ChestPlans plans={armPlans} title={" Core crusher routine"} />
-        <ChestPlans plans={absPlans} title={"Guns of steel"} />
+        <ChestPlans plans={absPlans} title={" Core crusher routine"} />
+        <ChestPlans plans={armPlans} title={"Guns of steel"} />
         <ChestPlans plans={shoulderPlans} title={"Shoulder and Back workout"} />
         <ChestPlans plans={legPlans} title={"Sculpted lower body circuit"} />
         <CustomPlans />
