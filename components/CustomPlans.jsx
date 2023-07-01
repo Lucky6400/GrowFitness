@@ -23,7 +23,7 @@ const CustomPlans = () => {
     const [restTime, setRestTime] = useState(customPlans[idx]?.exercises[exIdx]?.time || 0);
 
     const speak = (text) => {
-      //  const thingToSay = '1';
+        //  const thingToSay = '1';
         Speech.speak(text);
     };
     useEffect(() => {
@@ -68,7 +68,7 @@ const CustomPlans = () => {
                             onPress={() => {
                                 setIdx(i);
                                 setModalVisible(true);
-                                dispatch(fitnessActions.addToRecent(v));
+                                dispatch(fitnessActions.addToRecent({ ...v, date: new Date().toISOString() }))
                             }}
                             activeOpacity={0.8}
                             style={{ ...styles.homeHero, backgroundColor: '#000' }}
@@ -142,7 +142,7 @@ const CustomPlans = () => {
                                     setExIdx(0);
                                     setExModalVisible(true);
                                     speak(`Ready to go! First exercise ${customPlans[idx]?.exercises[0]?.name}`)
-                                  //  Speech.speak(`Ready to go`)
+                                    //  Speech.speak(`Ready to go`)
                                 }}
                                 color={primary}
                                 title="Start"
@@ -184,12 +184,12 @@ const CustomPlans = () => {
                                             onPress={() => {
                                                 setExIdx(prevIdx => prevIdx + 1);
                                                 setRestTime(customPlans[idx]?.exercises[exIdx + 1]?.time || 0);
-                                                if(customPlans[idx]?.exercises[exIdx + 1].type === 'work') {
+                                                if (customPlans[idx]?.exercises[exIdx + 1].type === 'work') {
                                                     speak(`${customPlans[idx]?.exercises[exIdx + 1].reps} ${customPlans[idx]?.exercises[exIdx + 1].name}`)
                                                 } else {
                                                     speak('Take a rest');
                                                 }
-                                                
+
                                             }}
                                         >
                                             <Text style={styles.bigText}>Next</Text>
@@ -199,6 +199,7 @@ const CustomPlans = () => {
                                             style={styles.nextBtn}
                                             onPress={() => {
                                                 setExModalVisible(false);
+                                                dispatch(fitnessActions.markDay());
                                                 speak(`Well Done! Congratulations!!`)
                                             }}
                                         >

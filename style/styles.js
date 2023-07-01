@@ -88,7 +88,7 @@ export const styles = StyleSheet.create({
     wrk01: {
         width: 250,
         height: 125,
-        backgroundColor: primary,
+        backgroundColor: '#fff',
         marginRight: 10
     },
     status: {
@@ -273,5 +273,14 @@ export const styles = StyleSheet.create({
         fontWeight: 300,
         fontSize: 12,
         padding: 5
+    },
+    histCard: {
+        borderTopWidth: 1,
+        borderColor: '#cfcfcf',
+        padding: 5
+    },
+    smallText: {
+        fontSize: 12,
+        color: '#909090'
     }
 })

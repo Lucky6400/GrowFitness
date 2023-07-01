@@ -10,7 +10,7 @@ import Plans from '../components/ChestPlans'
 
 export default function HomeScreen({ navigation, route }) {
   const recentPlans = useSelector(s => s.fitness.recentPlans);
-  console.log(recentPlans);
+//  console.log(recentPlans[2]);
 
   return (
     <ScrollView style={styles.container}>

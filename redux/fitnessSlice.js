@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { schedules } from "../data/schedules/schedules";
+import { getFormattedDate } from "../helpers/getDate";
+import { primary } from "../style/theme";
 
 const initialState = {
     customPlans: [],
     currentPlan: null,
     modalVisible: false,
     recentPlans: [],
-    currSch: schedules[0]
+    currSch: schedules[0],
+    daysMarked: {}
 }
 
 export const fitnessSlice = createSlice({
@@ -45,6 +48,10 @@ export const fitnessSlice = createSlice({
         },
         setSchedule(state, action) {
             state.currSch = action.payload;
+        },
+        markDay(state, action) {
+            let date = getFormattedDate();
+            state.daysMarked[date] = { selected: true, marked: true, selectedColor: primary }
         }
     }
 })

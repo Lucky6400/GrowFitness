@@ -11,6 +11,8 @@ import { primary } from '../style/theme';
 import * as Speech from 'expo-speech';
 import { useDispatch } from 'react-redux';
 import { fitnessActions } from '../redux/fitnessSlice';
+import img from '../assets/dumbbell-press.jpg';
+import img2 from '../assets/dumbbell-flys.jpg';
 
 const speak = (text) => {
     //  const thingToSay = '1';
@@ -23,7 +25,7 @@ const Plans = ({ plans, title }) => {
     const [idx, setIdx] = useState(0);
     const [exIdx, setExIdx] = useState(0);
     const [restTime, setRestTime] = useState(plans[idx]?.exercises[exIdx]?.time || 0);
-
+    //   console.log(plans[1].image)
     useEffect(() => {
         let timer;
         if (restTime > 0) {
@@ -57,17 +59,21 @@ const Plans = ({ plans, title }) => {
                 {plans.map((v, i) => (
                     <ImageBackground
                         key={i + Date.now()}
-                        source={v.image}
+                        source={v.image || img}
                         resizeMode="cover"
+                        //  defaultSource={img2}
+                        //  borderRadius={10}
+                        imageStyle={{ borderRadius: 10 }}
                         style={styles.wrk01}
                     >
+                        <ImageBackground imageStyle={{ borderRadius: 10 }} progressiveRenderingEnabled source={img2} style={{ ...styles.homeHero, zIndex: -2, backgroundColor: 'transparent' }}></ImageBackground>
                         <TouchableOpacity
                             onPress={() => {
                                 setIdx(i);
                                 setModalVisible(true);
-                                dispatch(fitnessActions.addToRecent(v))
+                                dispatch(fitnessActions.addToRecent({ ...v, date: new Date().toISOString() }))
                             }}
-                            style={{ ...styles.homeHero, backgroundColor: '#000' }}
+                            style={{ ...styles.homeHero, backgroundColor: '#000', borderRadius: 10 }}
                         ></TouchableOpacity>
                         <Text style={styles.workoutName}>{v.name}</Text>
                         <Text style={styles.planDetails}>{v.level} Level</Text>
@@ -86,7 +92,7 @@ const Plans = ({ plans, title }) => {
                     <View style={styles.planCont}>
                         <ScrollView contentContainerStyle={styles.modalView}>
                             <Image
-                                source={plans[idx].image}
+                                source={plans[idx].image || img}
                                 resizeMode="cover"
                                 style={{ width: '100%', height: 200, marginVertical: 10 }}
                             />
@@ -174,6 +180,7 @@ const Plans = ({ plans, title }) => {
                                             style={styles.nextBtn}
                                             onPress={() => {
                                                 setExModalVisible(false);
+                                                dispatch(fitnessActions.markDay());
                                                 speak(`Well done! Congratulations`)
                                             }}
                                         >
