@@ -30,6 +30,10 @@ import lgImg from '../assets/legs.jpg'
 import { absPlans } from '../data/plans/absPlans'
 import { shoulderPlans } from '../data/plans/shoulderPlans'
 import { legPlans } from '../data/plans/legsPlans'
+import absEx from '../data/exerciseTypes/abs'
+import { shoulderAndBackExercises } from '../data/exerciseTypes/shoulderAndBack'
+import { armEx } from '../data/exerciseTypes/arms'
+import { legExercises } from '../data/exerciseTypes/legs'
 
 const ExploreScreen = () => {
   const currentPlan = useSelector(s => s.fitness.currentPlan)
@@ -238,7 +242,7 @@ const ExploreScreen = () => {
                 <View style={styles.exCont}>
                   <View style={styles.exView}>
                     <ScrollView>
-                      {chestEx.map((v, i) => (
+                      {[...chestEx, ...absEx, ...shoulderAndBackExercises, ...armEx, ...legExercises].map((v, i) => (
                         <TouchableOpacity
                           onPress={() => setCurrEx(v)}
                           key={i + Date.now()} style={{ ...styles.exListCard, borderColor: currEx?.name === v.name ? primary : secondary, backgroundColor: currEx?.name === v.name ? primaryTransparent : 'transparent' }}>

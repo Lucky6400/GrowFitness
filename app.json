@@ -21,7 +21,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA"
+      ],
+      "package": "com.lucky6400.GrowFitness"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -39,6 +44,11 @@
           "cameraPermission": "Allow GrowFitness to access your camera."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "da1982a5-4d29-4929-96fe-7f6f47987eb2"
+      }
+    }
   }
 }

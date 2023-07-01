@@ -16,11 +16,27 @@ import { fitnessActions } from '../redux/fitnessSlice'
 import { Alert } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
 import { Camera, CameraType, requestCameraPermissionsAsync } from 'expo-camera';
-import * as Permissions from 'expo-permissions';
+import DateTimePicker from '@react-native-community/datetimepicker';
+//import { Platform } from 'react-native';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function ProfileScreen() {
   const [type, setType] = useState(CameraType.back);
-  const [permission, requestPermission] = Camera.useCameraPermissions();
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+  const [remiModal, setRemiModal] = useState(false);
   const currHeightInFt = useSelector(s => s.fitness.currHeightFt);
   const currHeightInInch = useSelector(s => s.fitness.currHeightIn);
   const currWeight = useSelector(s => s.fitness.currWeight);
@@ -28,6 +44,7 @@ export default function ProfileScreen() {
   const firstName = useSelector(s => s.fitness.firstName);
   const lastName = useSelector(s => s.fitness.lastName);
   const [modal, setModal] = useState(false);
+  const [reminderTime, setReminderTime] = useState(null);
   const [currhModal, setCurrhModal] = useState(false);
   const [twModal, setTwModal] = useState(false);
   const [profModal, setProfModal] = useState(false);
@@ -36,6 +53,61 @@ export default function ProfileScreen() {
   const [state, setState] = useState({});
   const image = useSelector(s => s.fitness.image);
 
+  // const scheduleDailyNotification = async (notificationTime) => {
+  //   const notificationContent = {
+  //     title: 'Daily Reminder',
+  //     body: 'This is your daily reminder message.',
+  //     sound: true,
+  //   };
+  //   notificationTime?.setHours(notificationTime.getHours() + 5);
+  //   notificationTime?.setMinutes(notificationTime.getMinutes() + 30);
+  //   // console.log(notificationTime)
+  //   // console.log(notificationTime?.toLocaleTimeString())
+
+  //   // Calculate the notification time for today
+  //   const now = new Date();
+  //   const notificationDate = new Date(
+  //     now.getFullYear(),
+  //     now.getMonth(),
+  //     now.getDate(),
+  //     notificationTime.getHours(),
+  //     notificationTime.getMinutes()
+  //   );
+
+  //   console.log(notificationDate)
+  //   // Schedule the daily notification
+  //   await Notifications.scheduleNotificationAsync({
+  //     content: notificationContent,
+  //     trigger: { hour: notificationDate.getHours(), minute: notificationDate.getMinutes(), repeats: true },
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   // You can replace this placeholder time with the selected time from the date picker
+  //   const selectedTime = reminderTime ? new Date(reminderTime) : new Date();
+  //   //selectedTime.setHours(9); // Example: Set the notification time to 9 AM
+  //   scheduleDailyNotification(selectedTime);
+  // }, [reminderTime]);
+
+
+  useEffect(() => {
+    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+
   function toggleCameraType() {
     setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
   }
@@ -43,9 +115,9 @@ export default function ProfileScreen() {
     // const { status } = await Permissions.askAsync(Permissions.CAMERA);
     const { status } = await requestCameraPermissionsAsync(Camera.getCameraPermissionsAsync())
     if (status !== 'granted') {
-      console.log('Camera permission not granted!');
+      //  console.log('Camera permission not granted!');
     } else {
-      console.log('Camera permission granted!');
+      // console.log('Camera permission granted!');
     }
   };
 
@@ -62,7 +134,7 @@ export default function ProfileScreen() {
       quality: 1,
     });
 
-    console.log(result);
+    //console.log(result);
 
     if (!result.canceled) {
       //  setImage(result.assets[0].uri);
@@ -76,7 +148,7 @@ export default function ProfileScreen() {
       const { uri } = await cameraRef.current.takePictureAsync();
       //  setImage(uri);
       dispatch(fitnessActions.setProfImage(uri))
-      console.log(uri);
+      //console.log(uri);
       setCameraModal(false);
     }
   };
@@ -153,6 +225,13 @@ export default function ProfileScreen() {
         </Text>
       </TouchableOpacity>
 
+      <TouchableOpacity onPress={() => setRemiModal(true)} style={styles.profCard}>
+        <FontAwesomeIcon name="weight" size={32} color={"#909090"} />
+        <Text style={styles.cardTxt}>
+          Set Reminder
+        </Text>
+      </TouchableOpacity>
+
 
       {/* <TouchableOpacity onPress={() => setThModal(true)} style={styles.profCard}>
         <Icon2 name="human-male-height" size={32} color={"#909090"} />
@@ -160,6 +239,31 @@ export default function ProfileScreen() {
           Target Height
         </Text>
       </TouchableOpacity> */}
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={remiModal}
+        onRequestClose={() => {
+          //Alert.alert("Modal has been closed.");
+          setRemiModal(!remiModal);
+        }}
+      >
+
+
+        <DateTimePicker
+
+          value={new Date()}
+          onChange={async (e, s) => {
+            // console.log(s)
+            // scheduleDailyNotification(new Date(s));
+            setReminderTime(s);
+            await schedulePushNotification(s);
+            setRemiModal(false);
+          }}
+          mode="time" />
+
+      </Modal>
 
 
       <Modal
@@ -353,4 +457,66 @@ export default function ProfileScreen() {
       </Modal> */}
     </ScrollView>
   )
+}
+
+
+async function schedulePushNotification(notificationTime) {
+  const notificationContent = {
+    title: 'Daily Reminder',
+    body: "Reminder of your workout routine!",
+    sound: true,
+  };
+  // notificationTime?.setHours(notificationTime.getHours() + 5);
+  // notificationTime?.setMinutes(notificationTime.getMinutes() + 30);
+  // console.log(notificationTime)
+  // console.log(notificationTime?.toLocaleTimeString())
+
+  // Calculate the notification time for today
+  const now = new Date();
+  const notificationDate = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    notificationTime.getHours(),
+    notificationTime.getMinutes()
+  );
+
+  console.log(notificationDate)
+  // Schedule the daily notification
+  await Notifications.scheduleNotificationAsync({
+    content: notificationContent,
+    trigger: { hour: notificationDate.getHours(), minute: notificationDate.getMinutes(), repeats: true },
+  });
+}
+
+async function registerForPushNotificationsAsync() {
+  let token;
+
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+    console.log(token);
+  } else {
+    Alert.alert('Must use physical device for Push Notifications');
+  }
+
+  return token;
 }

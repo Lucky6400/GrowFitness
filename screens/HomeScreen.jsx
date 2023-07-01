@@ -18,6 +18,9 @@ export default function HomeScreen({ navigation, route }) {
   const firstName = useSelector(s => s.fitness.firstName);
   const lastName = useSelector(s => s.fitness.lastName);
 
+  const heightInMeter = (currHeightInFt * 0.3048) + (currHeightInInch * 0.0254);
+  const bmi = currWeight / (heightInMeter * heightInMeter);
+
   return (
     <ScrollView style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.imageHero}>
@@ -76,7 +79,7 @@ export default function HomeScreen({ navigation, route }) {
               bmi
             </Text>
             <Text>
-              21.3
+              {bmi}
             </Text>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
