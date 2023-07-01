@@ -282,5 +282,39 @@ export const styles = StyleSheet.create({
     smallText: {
         fontSize: 12,
         color: '#909090'
+    },
+    profileImage: {
+        width: 200,
+        height: 200,
+        alignSelf: 'center',
+        marginVertical: 20,
+        borderRadius: 500,
+        borderColor: '#000',
+        borderWidth: 4
+    },
+    profCard: {
+        borderTopWidth: 1,
+        borderColor: '#cfcfcf',
+        padding: 5,
+        flexDirection: 'row',
+        gap: 10,
+        alignItems: 'center',
+    },
+    cardTxt: {
+        fontSize: 14,
+        fontWeight: 600,
+    },
+    inputStyle2: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#cfcfcf',
+        marginVertical: 5,
+        paddingVertical: 5
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        gap: 20,
+        paddingHorizontal: 10,
+        marginTop: 220
     }
 })

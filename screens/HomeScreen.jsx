@@ -10,14 +10,20 @@ import Plans from '../components/ChestPlans'
 
 export default function HomeScreen({ navigation, route }) {
   const recentPlans = useSelector(s => s.fitness.recentPlans);
-//  console.log(recentPlans[2]);
+  //  console.log(recentPlans[2]);
+  const currHeightInFt = useSelector(s => s.fitness.currHeightFt);
+  const currHeightInInch = useSelector(s => s.fitness.currHeightIn);
+  const currWeight = useSelector(s => s.fitness.currWeight);
+  const tarWeight = useSelector(s => s.fitness.tarWeight);
+  const firstName = useSelector(s => s.fitness.firstName);
+  const lastName = useSelector(s => s.fitness.lastName);
 
   return (
     <ScrollView style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.imageHero}>
         <View style={styles.homeHero}></View>
         <Text style={styles.heroHeading}>
-          Good morning, Lucky!
+          Good morning, {firstName}!
         </Text>
 
         <Text style={styles.heroQuote}>
@@ -54,7 +60,7 @@ export default function HomeScreen({ navigation, route }) {
               Current WEIGHT
             </Text>
             <Text>
-              62.00KG
+              {currWeight}KG
             </Text>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -62,7 +68,7 @@ export default function HomeScreen({ navigation, route }) {
               Current HEIGHT
             </Text>
             <Text>
-              5ft. 7in
+              {currHeightInFt}ft. {currHeightInInch}in
             </Text>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -78,7 +84,7 @@ export default function HomeScreen({ navigation, route }) {
               target weight
             </Text>
             <Text>
-              70.00KG
+              {tarWeight}KG
             </Text>
           </View>
         </View>

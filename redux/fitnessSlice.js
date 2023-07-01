@@ -9,7 +9,17 @@ const initialState = {
     modalVisible: false,
     recentPlans: [],
     currSch: schedules[0],
-    daysMarked: {}
+    daysMarked: {},
+    currHeightFt: 0,
+    currHeightIn: 0,
+    tarHeightFt: 0,
+    tarHeightIn: '',
+    currWeight: '',
+    tarWeight: '',
+    firstName: 'Bro',
+    lastName: '',
+    image: ''
+    //gender: ''
 }
 
 export const fitnessSlice = createSlice({
@@ -52,7 +62,32 @@ export const fitnessSlice = createSlice({
         markDay(state, action) {
             let date = getFormattedDate();
             state.daysMarked[date] = { selected: true, marked: true, selectedColor: primary }
+        },
+        setCurrHeight(state, action) {
+            let data = action.payload
+            state.currHeightFt = data.currHeightInFt;
+            state.currHeightIn = data.currHeightInInch;
+        },
+        setTarHeight(state, action) {
+            let data = action.payload
+            state.tarHeightFt = data.tarHeightInFt;
+            state.tarHeightIn = data.tarHeightInInch;
+        },
+        setCurrWeight(state, action) {
+            state.currWeight = action.payload
+        },
+        setTarWeight(state, action) {
+            state.tarWeight = action.payload
+        },
+        setProfile(state, action) {
+            state.firstName = action.payload.firstName;
+            state.lastName = action.payload.lastName;
+          //  state.gender = action.payload.gender;
+        },
+        setProfImage(state, action) {
+            state.image = action.payload
         }
+
     }
 })
 
