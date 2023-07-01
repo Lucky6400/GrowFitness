@@ -57,11 +57,11 @@ const ExploreScreen = () => {
       <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
         <SchedulePlanner />
         <Schedules />
-        <ChestPlans plans={chestPlans} title={"Dominating Chest Development"} image={img} />
-        <ChestPlans plans={armPlans} title={" Core crusher routine"} image={armImg} />
-        <ChestPlans plans={absPlans} title={"Guns of steel"} image={absImg} />
-        <ChestPlans plans={shoulderPlans} title={"Shoulder and Back workout"} image={shImg} />
-        <ChestPlans plans={legPlans} title={"Sculpted lower body circuit"} image={lgImg} />
+        <ChestPlans plans={chestPlans} title={"Dominating Chest Development"} />
+        <ChestPlans plans={armPlans} title={" Core crusher routine"} />
+        <ChestPlans plans={absPlans} title={"Guns of steel"} />
+        <ChestPlans plans={shoulderPlans} title={"Shoulder and Back workout"} />
+        <ChestPlans plans={legPlans} title={"Sculpted lower body circuit"} />
         <CustomPlans />
       </ScrollView>
 

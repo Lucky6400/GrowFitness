@@ -5,8 +5,6 @@ import { ImageBackground } from 'react-native'
 import image from '../assets/homeHero.jpg'
 import { ScrollView } from 'react-native-gesture-handler'
 import { gymMotivationalQuotes } from '../data/quotes'
-import img01 from '../assets/img01.jpg'
-import { TouchableOpacity } from 'react-native'
 import { useSelector } from 'react-redux'
 import Plans from '../components/ChestPlans'
 
@@ -38,21 +36,9 @@ export default function HomeScreen({ navigation, route }) {
       </ImageBackground>
 
       <View style={styles.homeCenter}>
-        <Text style={styles.h01}>
-          Continue...
-        </Text>
-        <ImageBackground source={img01} style={styles.continue} resizeMode="cover">
-          <TouchableOpacity onPress={() => console.log("presssed")} style={{ ...styles.homeHero, backgroundColor: '#000' }}></TouchableOpacity>
-          <Text style={styles.workoutName}>
-            Arms Workout - Dumbbells
-          </Text>
-
-          <Text style={styles.workoutName}>
-            DAY - 20
-          </Text>
-
-          <View style={{ ...styles.workoutProgress, width: '70%' }}></View>
-        </ImageBackground>
+        {recentPlans.length > 0 ?
+          <Plans title={"Continue..."} plans={recentPlans?.slice(0, 1)} />
+          : <></>}
 
         {recentPlans.length > 0 ?
           <Plans title={"Recently Done"} plans={recentPlans} />

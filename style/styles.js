@@ -114,8 +114,8 @@ export const styles = StyleSheet.create({
         padding: 10
     },
     sch01: {
-        width: 100,
-        height: 100,
+        width: 250,
+        height: 150,
         backgroundColor: primaryLighter,
         marginRight: 15,
         borderRadius: 10
@@ -267,5 +267,11 @@ export const styles = StyleSheet.create({
         backgroundColor: '#000',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    schDesc: {
+        color: '#fff',
+        fontWeight: 300,
+        fontSize: 12,
+        padding: 5
     }
 })

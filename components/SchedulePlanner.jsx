@@ -5,8 +5,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { primary, primaryLighter } from '../style/theme';
 import { TouchableOpacity } from 'react-native';
+import { weeks } from '../data/weeks';
+import { useSelector } from 'react-redux';
+import { schedules } from '../data/schedules/schedules';
 
 const SchedulePlanner = () => {
+    const currentSchedule = useSelector(s => s.fitness.currSch);
+    const schedule = currentSchedule?.schedule || schedules[0].schedule;
     return (
         <>
             <Text style={styles.h01}>Schedule your way</Text>
@@ -18,14 +23,14 @@ const SchedulePlanner = () => {
                     Current schedule
                 </Text>
                 <Text style={styles.goalRight}>
-                    Normal schedule
+                    {currentSchedule?.level || schedules[0].level}
                 </Text>
 
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: 10 }}>
-                    {["Chest", "Arms", "Shoulder & Back", "Legs", "Rest", "Rest", "Rest"].map((v, i) => (
+                    {schedule.map((v, i) => (
                         <View key={i + Date.now()} style={{ width: '50%' }}>
                             <Text style={{ ...styles.goalLeft, fontSize: 12 }}>
-                                {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][i]}:
+                                {weeks[i]}:
                             </Text>
                             <Text style={{ ...styles.goalRight, fontSize: 12, }}>
                                 {v}
@@ -34,9 +39,9 @@ const SchedulePlanner = () => {
                     ))}
                 </View>
 
-                <TouchableOpacity style={{ position: "absolute", top: 10, right: 15 }}>
+                {/* <TouchableOpacity style={{ position: "absolute", top: 10, right: 15 }}>
                     <MaterialIcons name="edit" size={24} color="#fff" />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </LinearGradient>
         </>
     )

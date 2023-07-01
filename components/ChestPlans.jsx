@@ -17,7 +17,7 @@ const speak = (text) => {
     Speech.speak(text);
 };
 
-const Plans = ({ plans, title, image }) => {
+const Plans = ({ plans, title }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [exModalVisible, setExModalVisible] = useState(false);
     const [idx, setIdx] = useState(0);

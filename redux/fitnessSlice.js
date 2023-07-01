@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { schedules } from "../data/schedules/schedules";
 
 const initialState = {
     customPlans: [],
     currentPlan: null,
     modalVisible: false,
-    recentPlans: []
+    recentPlans: [],
+    currSch: schedules[0]
 }
 
 export const fitnessSlice = createSlice({
@@ -40,6 +42,9 @@ export const fitnessSlice = createSlice({
                 }
                 state.recentPlans = currPlans
             }
+        },
+        setSchedule(state, action) {
+            state.currSch = action.payload;
         }
     }
 })
