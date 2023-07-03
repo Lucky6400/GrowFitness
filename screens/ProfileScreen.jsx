@@ -43,6 +43,7 @@ export default function ProfileScreen() {
   const tarWeight = useSelector(s => s.fitness.tarWeight);
   const firstName = useSelector(s => s.fitness.firstName);
   const lastName = useSelector(s => s.fitness.lastName);
+  const currentGoal = useSelector(s => s.fitness.currentGoal);
   const [modal, setModal] = useState(false);
   const [reminderTime, setReminderTime] = useState(null);
   const [currhModal, setCurrhModal] = useState(false);
@@ -189,7 +190,7 @@ export default function ProfileScreen() {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => setRemiModal(true)} style={styles.profCard}>
-        <FontAwesomeIcon name="weight" size={32} color={"#909090"} />
+        <FontAwesomeIcon name="bell" size={32} color={"#909090"} />
         <Text style={styles.cardTxt}>
           Set Reminder
         </Text>
@@ -233,7 +234,7 @@ export default function ProfileScreen() {
         }}
       >
         <View style={styles.exCont}>
-          <View style={{ ...styles.exView, height: 200 }}>
+          <View style={{ ...styles.exView, height: 250 }}>
             <Text style={styles.smallText}>
               Account settings
             </Text>
@@ -245,6 +246,11 @@ export default function ProfileScreen() {
               defaultValue={lastName}
               onChangeText={e => setState(p => ({ ...p, lastName: e }))}
               style={{ ...styles.inputStyle2, textAlignVertical: 'center' }} keyboardType='default' placeholder='Type your last name' />
+
+            <TextInput
+              defaultValue={currentGoal}
+              onChangeText={e => setState(p => ({ ...p, currentGoal: e }))}
+              style={{ ...styles.inputStyle2, textAlignVertical: 'center' }} keyboardType='default' placeholder='Type your goal' />
             {/* <TextInput style={{...styles.inputStyle, textAlignVertical: 'center'}} keyboardType='numeric' placeholder='Select height in.'/> */}
 
             <TouchableOpacity

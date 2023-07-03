@@ -18,7 +18,9 @@ const initialState = {
     tarWeight: '',
     firstName: 'Bro',
     lastName: '',
-    image: ''
+    image: '',
+    currentGoal: 'None',
+    totalWorkouts: 0
     //gender: ''
 }
 
@@ -82,10 +84,14 @@ export const fitnessSlice = createSlice({
         setProfile(state, action) {
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
+            state.currentGoal = action.payload.currentGoal;
           //  state.gender = action.payload.gender;
         },
         setProfImage(state, action) {
             state.image = action.payload
+        },
+        addTotalWorkouts(state, action) {
+            state.totalWorkouts += 1
         }
 
     }

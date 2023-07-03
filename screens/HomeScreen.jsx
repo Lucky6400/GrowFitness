@@ -17,6 +17,7 @@ export default function HomeScreen({ navigation, route }) {
   const tarWeight = useSelector(s => s.fitness.tarWeight);
   const firstName = useSelector(s => s.fitness.firstName);
   const lastName = useSelector(s => s.fitness.lastName);
+  const currentGoal = useSelector(s => s.fitness.currentGoal);
 
   const heightInMeter = (currHeightInFt * 0.3048) + (currHeightInInch * 0.0254);
   const bmi = currWeight / (heightInMeter * heightInMeter);
@@ -26,7 +27,7 @@ export default function HomeScreen({ navigation, route }) {
       <ImageBackground source={image} resizeMode="cover" style={styles.imageHero}>
         <View style={styles.homeHero}></View>
         <Text style={styles.heroHeading}>
-          Good morning, {firstName}!
+          Hey there, {firstName}!
         </Text>
 
         <Text style={styles.heroQuote}>
@@ -38,7 +39,7 @@ export default function HomeScreen({ navigation, route }) {
             Current Goal:
           </Text>
           <Text style={styles.goalRight}>
-            Muscle Building
+           {currentGoal}
           </Text>
         </View>
 
@@ -63,7 +64,7 @@ export default function HomeScreen({ navigation, route }) {
               Current WEIGHT
             </Text>
             <Text>
-              {currWeight}KG
+              {currWeight ? currWeight + "KG" : "N.A"}
             </Text>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -79,7 +80,7 @@ export default function HomeScreen({ navigation, route }) {
               bmi
             </Text>
             <Text>
-              {bmi}
+              {!isNaN(bmi) ? bmi : "N.A"}
             </Text>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -87,7 +88,7 @@ export default function HomeScreen({ navigation, route }) {
               target weight
             </Text>
             <Text>
-              {tarWeight}KG
+              {tarWeight ? tarWeight + "KG" : "N.A"}
             </Text>
           </View>
         </View>

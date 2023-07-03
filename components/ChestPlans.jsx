@@ -181,6 +181,7 @@ const Plans = ({ plans, title }) => {
                                             onPress={() => {
                                                 setExModalVisible(false);
                                                 dispatch(fitnessActions.markDay());
+                                                dispatch(fitnessActions.addTotalWorkouts());
                                                 speak(`Well done! Congratulations`)
                                             }}
                                         >

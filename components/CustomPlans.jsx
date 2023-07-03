@@ -200,6 +200,7 @@ const CustomPlans = () => {
                                             onPress={() => {
                                                 setExModalVisible(false);
                                                 dispatch(fitnessActions.markDay());
+                                                dispatch(fitnessActions.addTotalWorkouts());
                                                 speak(`Well Done! Congratulations!!`)
                                             }}
                                         >
