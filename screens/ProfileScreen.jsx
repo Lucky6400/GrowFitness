@@ -53,43 +53,6 @@ export default function ProfileScreen() {
   const [state, setState] = useState({});
   const image = useSelector(s => s.fitness.image);
 
-  // const scheduleDailyNotification = async (notificationTime) => {
-  //   const notificationContent = {
-  //     title: 'Daily Reminder',
-  //     body: 'This is your daily reminder message.',
-  //     sound: true,
-  //   };
-  //   notificationTime?.setHours(notificationTime.getHours() + 5);
-  //   notificationTime?.setMinutes(notificationTime.getMinutes() + 30);
-  //   // console.log(notificationTime)
-  //   // console.log(notificationTime?.toLocaleTimeString())
-
-  //   // Calculate the notification time for today
-  //   const now = new Date();
-  //   const notificationDate = new Date(
-  //     now.getFullYear(),
-  //     now.getMonth(),
-  //     now.getDate(),
-  //     notificationTime.getHours(),
-  //     notificationTime.getMinutes()
-  //   );
-
-  //   console.log(notificationDate)
-  //   // Schedule the daily notification
-  //   await Notifications.scheduleNotificationAsync({
-  //     content: notificationContent,
-  //     trigger: { hour: notificationDate.getHours(), minute: notificationDate.getMinutes(), repeats: true },
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   // You can replace this placeholder time with the selected time from the date picker
-  //   const selectedTime = reminderTime ? new Date(reminderTime) : new Date();
-  //   //selectedTime.setHours(9); // Example: Set the notification time to 9 AM
-  //   scheduleDailyNotification(selectedTime);
-  // }, [reminderTime]);
-
-
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
 
@@ -101,10 +64,10 @@ export default function ProfileScreen() {
       console.log(response);
     });
 
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
+    // return () => {
+    //   Notifications.removeNotificationSubscription(notificationListener.current);
+    //   Notifications.removeNotificationSubscription(responseListener.current);
+    // };
   }, []);
 
 
@@ -240,17 +203,9 @@ export default function ProfileScreen() {
         </Text>
       </TouchableOpacity> */}
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={remiModal}
-        onRequestClose={() => {
-          //Alert.alert("Modal has been closed.");
-          setRemiModal(!remiModal);
-        }}
-      >
 
 
+      {remiModal ?
         <DateTimePicker
 
           value={new Date()}
@@ -262,8 +217,10 @@ export default function ProfileScreen() {
             setRemiModal(false);
           }}
           mode="time" />
+        :
+        <></>
+      }
 
-      </Modal>
 
 
       <Modal
