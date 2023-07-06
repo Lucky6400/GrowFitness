@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { fitnessActions } from '../redux/fitnessSlice';
 import img from '../assets/dumbbell-press.jpg';
 import img2 from '../assets/dumbbell-flys.jpg';
+import YoutubePlayer from "react-native-youtube-iframe";
 
 const speak = (text) => {
     //  const thingToSay = '1';
@@ -51,10 +52,14 @@ const Plans = ({ plans, title }) => {
     }, [restTime, exIdx, idx]);
 
     const dispatch = useDispatch();
+    const [playing, setPlaying] = useState(true);
 
     return (
         <>
-            <Text style={styles.h01}>{title}</Text>
+            {title ?
+                <Text style={styles.h01}>{title}</Text>
+                : <></>}
+
             <ScrollView horizontal>
                 {plans.map((v, i) => (
                     <ImageBackground
@@ -105,18 +110,17 @@ const Plans = ({ plans, title }) => {
                                 .filter(v => v.type === 'work')
                                 .map((v, i) => (
                                     <View key={i + Date.now()} style={styles.exCard}>
-                                        <Text style={{ fontWeight: 600 }}>{v.name}</Text>
+                                        <Text style={{ fontWeight: 600, textTransform: 'uppercase' }}>{v.name}</Text>
                                         <Text>x{v.reps}</Text>
                                     </View>
                                 ))}
                         </ScrollView>
                         <View
                             style={{
-                                width: 200,
+                                width: '100%',
                                 marginVertical: 10,
                                 position: 'absolute',
                                 bottom: 0,
-                                left: 80,
                             }}
                         >
                             <Button
@@ -138,9 +142,29 @@ const Plans = ({ plans, title }) => {
                                 setExModalVisible(!exModalVisible);
                             }}
                         >
-                            <View style={styles.exModalCont}>
+                            <ScrollView contentContainerStyle={styles.exModalCont}>
                                 {plans[idx]?.exercises[exIdx]?.type === 'work' ? (
                                     <>
+                                        {plans[idx]?.exercises[exIdx].videoId ?
+                                            <YoutubePlayer
+                                                height={250}
+                                                play={playing}
+                                                videoId={plans[idx]?.exercises[exIdx].videoId}
+                                                initialPlayerParams={{
+                                                    start: plans[idx]?.exercises[exIdx].timestamp,
+                                                    end: plans[idx]?.exercises[exIdx + 2].timestamp,
+                                                    controls: true,
+                                                    
+                                                }}
+                                                onChangeState={e => {
+                                                    if (e === 'ended' || e === 'paused') {
+                                                        setPlaying(false);
+                                                    }
+                                                }}
+
+                                            />
+                                            : <></>}
+
                                         <Text style={styles.modalText}>
                                             {plans[idx]?.exercises[exIdx]?.name}
                                         </Text>
@@ -189,7 +213,7 @@ const Plans = ({ plans, title }) => {
                                         </TouchableOpacity>
                                     )}
                                 </View>
-                            </View>
+                            </ScrollView>
                         </Modal>
                     </View>
                 </Modal>

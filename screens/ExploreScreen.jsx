@@ -22,11 +22,6 @@ import { Alert } from 'react-native'
 import { useEffect } from 'react'
 import { chestPlans } from '../data/plans/chestPlans'
 import { armPlans } from '../data/plans/armPlans'
-import img from '../assets/dumbbell-press.jpg';
-import armImg from '../assets/img01.jpg'
-import absImg from '../assets/abs.jpg'
-import shImg from '../assets/shoulder.jpg'
-import lgImg from '../assets/legs.jpg'
 import { absPlans } from '../data/plans/absPlans'
 import { shoulderPlans } from '../data/plans/shoulderPlans'
 import { legPlans } from '../data/plans/legsPlans'
@@ -34,6 +29,10 @@ import absEx from '../data/exerciseTypes/abs'
 import { shoulderAndBackExercises } from '../data/exerciseTypes/shoulderAndBack'
 import { armEx } from '../data/exerciseTypes/arms'
 import { legExercises } from '../data/exerciseTypes/legs'
+import Banner from '../components/Banner'
+import { RBchestplans } from '../data/plans/ResistanceBand/RBchestplans'
+import { RBarmsplans } from '../data/plans/ResistanceBand/RBarmsplans'
+
 
 const ExploreScreen = () => {
   const currentPlan = useSelector(s => s.fitness.currentPlan)
@@ -61,12 +60,14 @@ const ExploreScreen = () => {
       <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
         <SchedulePlanner />
         <Schedules />
+        <CustomPlans />
         <ChestPlans plans={chestPlans} title={"Dominating Chest Development"} />
         <ChestPlans plans={absPlans} title={" Core crusher routine"} />
         <ChestPlans plans={armPlans} title={"Guns of steel"} />
         <ChestPlans plans={shoulderPlans} title={"Shoulder and Back workout"} />
         <ChestPlans plans={legPlans} title={"Sculpted lower body circuit"} />
-        <CustomPlans />
+        <Banner />
+        <ChestPlans plans={[...RBchestplans, ...RBarmsplans]} />
       </ScrollView>
 
       <Modal

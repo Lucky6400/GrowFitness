@@ -131,6 +131,7 @@ export const styles = StyleSheet.create({
         height: '100%',
         backgroundColor: '#fff',
         paddingVertical: 10,
+        paddingBottom: 100
     },
     modalText: {
         fontSize: 18,
@@ -316,5 +317,19 @@ export const styles = StyleSheet.create({
         gap: 20,
         paddingHorizontal: 10,
         marginTop: 220
-    }
+    },
+    banner: {
+        width: '100%',
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderTopWidth: 1,
+        borderColor: secondary,
+        marginTop: 60,
+        overflow: 'hidden',
+        flexDirection: 'row',
+        marginBottom: 10
+    },
+    
 })

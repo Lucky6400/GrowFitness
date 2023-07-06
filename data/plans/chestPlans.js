@@ -1,9 +1,5 @@
 import { chestEx } from "../exerciseTypes/chest";
 import img from '../../assets/dumbbell-press.jpg';
-import armImg from '../../assets/img01.jpg'
-import absImg from '../../assets/abs.jpg'
-import shImg from '../../assets/shoulder.jpg'
-import lgImg from '../../assets/legs.jpg'
 
 export const chestPlans = [
     {

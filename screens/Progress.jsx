@@ -36,7 +36,7 @@ const ProgressScreen = () => {
             </Text>
             {recentPlans.length > 0 ?
                 recentPlans.map((v, i) => (
-                    <View style={styles.histCard}>
+                    <View key={i + Date.now()} style={styles.histCard}>
                         <Text>{v.name}</Text>
                         <Text style={styles.smallText}>
                             {new Date(v.date).toLocaleString()}

@@ -18,6 +18,7 @@ export default function HomeScreen({ navigation, route }) {
   const firstName = useSelector(s => s.fitness.firstName);
   const lastName = useSelector(s => s.fitness.lastName);
   const currentGoal = useSelector(s => s.fitness.currentGoal);
+  const totalWorkouts = useSelector(s => s.fitness.totalWorkouts);
 
   const heightInMeter = (currHeightInFt * 0.3048) + (currHeightInInch * 0.0254);
   const bmi = currWeight / (heightInMeter * heightInMeter);
@@ -89,6 +90,15 @@ export default function HomeScreen({ navigation, route }) {
             </Text>
             <Text>
               {tarWeight ? tarWeight + "KG" : "N.A"}
+            </Text>
+          </View>
+
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={styles.h02}>
+              total workouts
+            </Text>
+            <Text>
+              {totalWorkouts ? totalWorkouts : "0"}
             </Text>
           </View>
         </View>
