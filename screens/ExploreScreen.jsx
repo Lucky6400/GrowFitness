@@ -36,7 +36,6 @@ import { RBshoudlerplans } from '../data/plans/ResistanceBand/RBshoulderplans'
 import { RBlegsplans } from '../data/plans/ResistanceBand/RBlegsplans'
 import { RBExercises } from '../data/exerciseTypes/ResistanceBand/exercises'
 
-
 const ExploreScreen = React.memo(() => {
   const currentPlan = useSelector(s => s.fitness.currentPlan)
   const modalVisible = useSelector(s => s.fitness.modalVisible)
