@@ -3,7 +3,7 @@ import React from 'react'
 import { styles } from '../style/styles'
 import { primary } from '../style/theme'
 
-const Banner = () => {
+const Banner = ({title}) => {
     return (
         <View style={styles.banner}>
             <View style={{
@@ -17,7 +17,7 @@ const Banner = () => {
             }}></View>
 
             
-            <Text style={{ ...styles.addExTxt, color: '#000', textTransform: 'uppercase', fontWeight: 'bold' }}>With Resistance Band</Text>
+            <Text style={{ ...styles.addExTxt, color: '#000', textTransform: 'uppercase', fontWeight: 'bold' }}>{title}</Text>
 
 
             <View style={{

@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -5,7 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import ExploreScreen from './screens/ExploreScreen';
+const ExploreScreen = lazy(() => import('./screens/ExploreScreen'));
 import ProgressScreen from './screens/Progress';
 import { primary, secondary } from './style/theme';
 import { persistor, store } from './redux/store';

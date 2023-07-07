@@ -331,5 +331,13 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 10
     },
-    
+    filterBtn: {
+        backgroundColor: primary,
+        padding: 5,
+        paddingHorizontal: 10,
+        borderRadius: 10,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 })

@@ -1,14 +1,14 @@
 import { RBExercises } from "../../exerciseTypes/ResistanceBand/exercises";
-import img from '../../../assets/rb1.jpg'
-import { armEx } from "../../exerciseTypes/arms";
+import { chestEx } from "../../exerciseTypes/chest";
+import img from '../../../assets/rb.jpg'
 
-export const RBarmsplans = [
+export const RBshoudlerplans = [
     {
-        name: 'Arms',
+        name: 'Shoulder & Back',
         image: img,
         level: 'Beginner',
-        description: 'The plan is designed for beginners and incorporates exercises using resistance bands as well as bodyweight exercises. The plan aims to help newcomers build strength and muscle in their arms.The workout plan consists of 18 exercises in total, including a combination of resistance band exercises and bodyweight exercises. The exercises are performed with a specific number of repetitions and rest intervals between sets.',
-        noOfExercises: 18,
+        description: 'The shoulder and back exercise is part of a beginner-level workout plan that incorporates the use of resistance bands and bodyweight exercises. The primary goal of this exercise is to help beginners build strength and muscle in their shoulders and back.',
+        noOfExercises: 16,
         exercises: [
             {
                 id: Date.now(),
@@ -24,7 +24,7 @@ export const RBarmsplans = [
                 time: 10
             },
             {
-                ...armEx[15],
+                ...chestEx[15],
                 type: 'work',
                 reps: 14
             },
@@ -33,7 +33,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[23],
+                ...RBExercises[6],
                 type: 'work',
                 reps: 20
             },
@@ -42,7 +42,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[24],
+                ...RBExercises[7],
                 type: 'work',
                 reps: 20
             },
@@ -51,7 +51,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[25],
+                ...RBExercises[8],
                 type: 'work',
                 reps: 20
             },
@@ -60,7 +60,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[26],
+                ...RBExercises[10],
                 type: 'work',
                 reps: 20
             },
@@ -69,16 +69,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...armEx[16],
-                type: 'work',
-                reps: 14
-            },
-            {
-                type: 'rest',
-                time: 30
-            },
-            {
-                ...armEx[17],
+                ...RBExercises[11],
                 type: 'work',
                 reps: 20
             },
@@ -87,7 +78,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[32],
+                ...RBExercises[12],
                 type: 'work',
                 reps: 20
             },
@@ -96,7 +87,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[33],
+                ...RBExercises[15],
                 type: 'work',
                 reps: 20
             },
@@ -105,16 +96,16 @@ export const RBarmsplans = [
                 time: 50
             },
             {
-                ...armEx[15],
+                ...chestEx[15],
                 type: 'work',
-                reps: 14
+                reps: 10
             },
             {
                 type: 'rest',
                 time: 30
             },
             {
-                ...RBExercises[23],
+                ...RBExercises[6],
                 type: 'work',
                 reps: 20
             },
@@ -123,7 +114,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[24],
+                ...RBExercises[7],
                 type: 'work',
                 reps: 20
             },
@@ -132,7 +123,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[25],
+                ...RBExercises[8],
                 type: 'work',
                 reps: 20
             },
@@ -141,7 +132,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[26],
+                ...RBExercises[10],
                 type: 'work',
                 reps: 20
             },
@@ -150,16 +141,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...armEx[16],
-                type: 'work',
-                reps: 14
-            },
-            {
-                type: 'rest',
-                time: 30
-            },
-            {
-                ...armEx[17],
+                ...RBExercises[11],
                 type: 'work',
                 reps: 20
             },
@@ -168,7 +150,7 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[32],
+                ...RBExercises[12],
                 type: 'work',
                 reps: 20
             },
@@ -177,10 +159,10 @@ export const RBarmsplans = [
                 time: 30
             },
             {
-                ...RBExercises[33],
+                ...RBExercises[15],
                 type: 'work',
                 reps: 20
-            }
+            },
         ]
     }
 ]

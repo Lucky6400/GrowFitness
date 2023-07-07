@@ -32,9 +32,12 @@ import { legExercises } from '../data/exerciseTypes/legs'
 import Banner from '../components/Banner'
 import { RBchestplans } from '../data/plans/ResistanceBand/RBchestplans'
 import { RBarmsplans } from '../data/plans/ResistanceBand/RBarmsplans'
+import { RBshoudlerplans } from '../data/plans/ResistanceBand/RBshoulderplans'
+import { RBlegsplans } from '../data/plans/ResistanceBand/RBlegsplans'
+import { RBExercises } from '../data/exerciseTypes/ResistanceBand/exercises'
 
 
-const ExploreScreen = () => {
+const ExploreScreen = React.memo(() => {
   const currentPlan = useSelector(s => s.fitness.currentPlan)
   const modalVisible = useSelector(s => s.fitness.modalVisible)
   const [exVisible, setExVisible] = useState(false);
@@ -47,6 +50,16 @@ const ExploreScreen = () => {
   const [exercises, setExercises] = useState(currentPlan ? currentPlan.exercises : []);
   const [currEx, setCurrEx] = useState(null);
   const dispatch = useDispatch();
+  let totalExercises = [...chestEx, ...absEx, ...shoulderAndBackExercises, ...armEx, ...legExercises, ...RBExercises]
+  const [allExercises, setAllExercises] = useState(totalExercises);
+
+  const obj = {
+    'Shoulder & Back': shoulderAndBackExercises,
+    'Arms': armEx,
+    'Legs': legExercises,
+    'Abs': absEx,
+    'Resistance Band': RBExercises
+  }
 
   useEffect(() => {
     //console.log(currentPlan)
@@ -61,13 +74,15 @@ const ExploreScreen = () => {
         <SchedulePlanner />
         <Schedules />
         <CustomPlans />
+
+        <Banner title="With Dumbbells"/>
         <ChestPlans plans={chestPlans} title={"Dominating Chest Development"} />
         <ChestPlans plans={absPlans} title={" Core crusher routine"} />
         <ChestPlans plans={armPlans} title={"Guns of steel"} />
         <ChestPlans plans={shoulderPlans} title={"Shoulder and Back workout"} />
         <ChestPlans plans={legPlans} title={"Sculpted lower body circuit"} />
-        <Banner />
-        <ChestPlans plans={[...RBchestplans, ...RBarmsplans]} />
+        <Banner title={"WIth Resistance Band"} />
+        <ChestPlans plans={[...RBchestplans, ...RBarmsplans, ...RBshoudlerplans, ...RBlegsplans]} />
       </ScrollView>
 
       <Modal
@@ -242,12 +257,30 @@ const ExploreScreen = () => {
                 }}>
                 <View style={styles.exCont}>
                   <View style={styles.exView}>
+                    <Text>Filter:</Text>
+                    <ScrollView horizontal contentContainerStyle={{ flexDirection: 'row', paddingVertical: 15, height: 150, gap: 10 }}>
+
+                      {Object.keys(obj).map((v, i) => (
+                        <TouchableOpacity
+                          onPress={() => {
+                            setAllExercises(obj[v])
+                          }}
+                          key={i + Date.now()}
+                          style={styles.filterBtn}>
+                          <Text style={{ color: '#fff' }}>{v}</Text>
+                        </TouchableOpacity>
+                      ))}
+
+
+                    </ScrollView>
+
+                    <Text>Exercises:</Text>
                     <ScrollView>
-                      {[...chestEx, ...absEx, ...shoulderAndBackExercises, ...armEx, ...legExercises].map((v, i) => (
+                      {allExercises.map((v, i) => (
                         <TouchableOpacity
                           onPress={() => setCurrEx(v)}
                           key={i + Date.now()} style={{ ...styles.exListCard, borderColor: currEx?.name === v.name ? primary : secondary, backgroundColor: currEx?.name === v.name ? primaryTransparent : 'transparent' }}>
-                          <Text style={{ color: currEx?.name === v.name ? primary : "#000" }}>
+                          <Text style={{ color: currEx?.name === v.name ? primary : "#000", textTransform: 'capitalize' }}>
                             {v.name}
                           </Text>
                           <Text style={styles.exDesc}>
@@ -293,6 +326,6 @@ const ExploreScreen = () => {
 
     </View>
   )
-}
+})
 
 export default ExploreScreen

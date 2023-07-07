@@ -62,28 +62,33 @@ const Plans = ({ plans, title }) => {
 
             <ScrollView horizontal>
                 {plans.map((v, i) => (
-                    <ImageBackground
+                    <TouchableOpacity
                         key={i + Date.now()}
-                        source={v.image || img}
-                        resizeMode="cover"
-                        //  defaultSource={img2}
-                        //  borderRadius={10}
-                        imageStyle={{ borderRadius: 10 }}
-                        style={styles.wrk01}
-                    >
-                        <ImageBackground imageStyle={{ borderRadius: 10 }} progressiveRenderingEnabled source={img2} style={{ ...styles.homeHero, zIndex: -2, backgroundColor: 'transparent' }}></ImageBackground>
-                        <TouchableOpacity
-                            onPress={() => {
-                                setIdx(i);
-                                setModalVisible(true);
-                                dispatch(fitnessActions.addToRecent({ ...v, date: new Date().toISOString() }))
-                            }}
-                            style={{ ...styles.homeHero, backgroundColor: '#000', borderRadius: 10 }}
-                        ></TouchableOpacity>
-                        <Text style={styles.workoutName}>{v.name}</Text>
-                        <Text style={styles.planDetails}>{v.level} Level</Text>
-                        <Text style={styles.planDetails}>{v.noOfExercises} Exercises</Text>
-                    </ImageBackground>
+                        onPress={() => {
+                            setIdx(i);
+                            setModalVisible(true);
+                            dispatch(fitnessActions.addToRecent({ ...v, date: new Date().toISOString() }))
+                        }}>
+
+                        <ImageBackground
+
+                            source={v.image || img}
+                            resizeMode="cover"
+                            //  defaultSource={img2}
+                            //  borderRadius={10}
+                            imageStyle={{ borderRadius: 10 }}
+                            style={styles.wrk01}
+                        >
+                            <ImageBackground imageStyle={{ borderRadius: 10 }} progressiveRenderingEnabled source={img2} style={{ ...styles.homeHero, zIndex: -2, backgroundColor: 'transparent' }}></ImageBackground>
+                            <View
+
+                                style={{ ...styles.homeHero, backgroundColor: '#000', borderRadius: 10 }}
+                            ></View>
+                            <Text style={styles.workoutName}>{v.name}</Text>
+                            <Text style={styles.planDetails}>{v.level} Level</Text>
+                            <Text style={styles.planDetails}>{v.noOfExercises} Exercises</Text>
+                        </ImageBackground>
+                    </TouchableOpacity>
                 ))}
 
                 <Modal
@@ -157,7 +162,7 @@ const Plans = ({ plans, title }) => {
                                                     start: plans[idx]?.exercises[exIdx]?.timestamp,
                                                     end: plans[idx]?.exercises[exIdx + 2]?.timestamp,
                                                     controls: true,
-                                                    
+
                                                 }}
                                                 onChangeState={e => {
                                                     if (e === 'ended' || e === 'paused') {
