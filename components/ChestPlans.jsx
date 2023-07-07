@@ -139,6 +139,9 @@ const Plans = ({ plans, title }) => {
                             transparent={true}
                             visible={exModalVisible}
                             onRequestClose={() => {
+                                setExIdx(null);
+                                setRestTime(0);
+                                Speech.stop();
                                 setExModalVisible(!exModalVisible);
                             }}
                         >
@@ -151,8 +154,8 @@ const Plans = ({ plans, title }) => {
                                                 play={playing}
                                                 videoId={plans[idx]?.exercises[exIdx].videoId}
                                                 initialPlayerParams={{
-                                                    start: plans[idx]?.exercises[exIdx].timestamp,
-                                                    end: plans[idx]?.exercises[exIdx + 2].timestamp,
+                                                    start: plans[idx]?.exercises[exIdx]?.timestamp,
+                                                    end: plans[idx]?.exercises[exIdx + 2]?.timestamp,
                                                     controls: true,
                                                     
                                                 }}
@@ -187,6 +190,7 @@ const Plans = ({ plans, title }) => {
                                         <TouchableOpacity
                                             style={styles.nextBtn}
                                             onPress={() => {
+                                                Speech.stop();
                                                 setExIdx(prevIdx => prevIdx + 1);
                                                 setRestTime(plans[idx]?.exercises[exIdx + 1]?.time || 0);
                                                 if (plans[idx]?.exercises[exIdx + 1].type === 'work') {
