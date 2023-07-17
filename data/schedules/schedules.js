@@ -17,9 +17,9 @@ const intermediateSchedule = {
     schedule: [
         "Chest",
         "Arms",
-        "Legs",
         "Shoulder & Back",
         "Abs",
+        "Legs",
         "Rest",
         "Rest"
     ],

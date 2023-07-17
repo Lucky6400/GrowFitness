@@ -196,6 +196,15 @@ export default function ProfileScreen() {
         </Text>
       </TouchableOpacity>
 
+      <TouchableOpacity onPress={async () => {
+        await Notifications.cancelAllScheduledNotificationsAsync().then(res => console.log(res)).catch(err => console.log(err));
+        Alert.alert("Notifications cancelled successfully!");
+      }} style={styles.profCard}>
+        <FontAwesomeIcon name="bell" size={32} color={"#909090"} />
+        <Text style={styles.cardTxt}>
+          Cancel all notifications
+        </Text>
+      </TouchableOpacity>
 
       {/* <TouchableOpacity onPress={() => setThModal(true)} style={styles.profCard}>
         <Icon2 name="human-male-height" size={32} color={"#909090"} />
@@ -213,9 +222,10 @@ export default function ProfileScreen() {
           onChange={async (e, s) => {
             // console.log(s)
             // scheduleDailyNotification(new Date(s));
+            console.log(await Notifications.getAllScheduledNotificationsAsync())
+            setRemiModal(false);
             setReminderTime(s);
             await schedulePushNotification(s);
-            setRemiModal(false);
           }}
           mode="time" />
         :
@@ -380,44 +390,7 @@ export default function ProfileScreen() {
         </View>
       </Modal>
 
-      {/* <Modal
-        animationType="slide"
-        transparent={true}
-        visible={thModal}
-        onRequestClose={() => {
-          //Alert.alert("Modal has been closed.");
-          setThModal(!thModal);
-        }}
-      >
-        <View style={styles.exCont}>
-          <View style={{ ...styles.exView, height: 200 }}>
-            <Text style={styles.smallText}>
-              Select Target Height
-            </Text>
-            <TextInput
-              defaultValue={tarHeightInFt || '0'}
-              onChangeText={e => setState(p => ({ ...p, tarHeightInFt: e }))}
-              style={{ ...styles.inputStyle2, textAlignVertical: 'center' }} keyboardType='numeric' placeholder='Type Height (in ft)' />
-            <TextInput
-              defaultValue={tarHeightInInch || '0'}
-              onChangeText={e => setState(p => ({ ...p, tarHeightInInch: e }))}
-              style={{ ...styles.inputStyle2, textAlignVertical: 'center' }} keyboardType='numeric' placeholder='Type height in.' />
-
-            <TouchableOpacity
-              onPress={() => {
-                if (!state.tarHeightInFt || !state.tarHeightInInch) {
-                  Alert.alert('Please provide required values!');
-                  return null;
-                }
-                dispatch(fitnessActions.setTarHeight(state))
-                setThModal(false);
-              }}
-              style={styles.nextBtn}>
-              <Text style={styles.bigText}>Set Height</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal> */}
+     
     </ScrollView>
   )
 }
@@ -425,7 +398,7 @@ export default function ProfileScreen() {
 
 async function schedulePushNotification(notificationTime) {
   const notificationContent = {
-    title: 'Daily Reminder',
+    title: 'GrowFitness: Your daily workout reminder',
     body: "Reminder of your workout routine!",
     sound: true,
   };
