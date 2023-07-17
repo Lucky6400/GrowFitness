@@ -402,10 +402,6 @@ async function schedulePushNotification(notificationTime) {
     body: "Reminder of your workout routine!",
     sound: true,
   };
-  // notificationTime?.setHours(notificationTime.getHours() + 5);
-  // notificationTime?.setMinutes(notificationTime.getMinutes() + 30);
-  // console.log(notificationTime)
-  // console.log(notificationTime?.toLocaleTimeString())
 
   // Calculate the notification time for today
   const now = new Date();

@@ -27,6 +27,19 @@ const Plans = ({ plans, title }) => {
     const [exIdx, setExIdx] = useState(0);
     const [restTime, setRestTime] = useState(plans[idx]?.exercises[exIdx]?.time || 0);
     //   console.log(plans[1].image)
+
+    const getDataURL = (img) => {
+        const fileReader = new FileReader();
+
+        fileReader.onload = function (event) {
+            const dataURL = event.target.result;
+            // Use the dataURL as needed
+            console.log(dataURL);
+            return dataURL
+        };
+
+        fileReader.readAsDataURL(img);
+    }
     useEffect(() => {
         let timer;
         if (restTime > 0) {
@@ -72,7 +85,7 @@ const Plans = ({ plans, title }) => {
 
                         <ImageBackground
 
-                            source={v.image || img}
+                            source={{ uri: String(v.image) }}
                             resizeMode="cover"
                             //  defaultSource={img2}
                             //  borderRadius={10}
@@ -102,7 +115,7 @@ const Plans = ({ plans, title }) => {
                     <View style={styles.planCont}>
                         <ScrollView contentContainerStyle={styles.modalView}>
                             <Image
-                                source={plans[idx].image || img}
+                                source={{ uri: String(plans[idx].image) }}
                                 resizeMode="cover"
                                 style={{ width: '100%', height: 200, marginVertical: 10 }}
                             />

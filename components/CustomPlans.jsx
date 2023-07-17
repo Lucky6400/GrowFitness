@@ -59,7 +59,7 @@ const CustomPlans = () => {
                 {customPlans?.length > 0 ? customPlans.map((v, i) => (
                     <ImageBackground
                         key={i + Date.now()}
-                        source={img}
+                        source={{ uri: 'https://images.pexels.com/photos/6550851/pexels-photo-6550851.jpeg' }}
                         resizeMode="cover"
                         style={styles.wrk01}
 

@@ -5,7 +5,7 @@ import img from '../../../assets/rb.jpg'
 export const RBshoudlerplans = [
     {
         name: 'Shoulder & Back',
-        image: img,
+        image: "https://images.pexels.com/photos/6667512/pexels-photo-6667512.jpeg",
         level: 'Beginner',
         description: 'The shoulder and back exercise is part of a beginner-level workout plan that incorporates the use of resistance bands and bodyweight exercises. The primary goal of this exercise is to help beginners build strength and muscle in their shoulders and back.',
         noOfExercises: 16,

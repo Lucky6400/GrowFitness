@@ -5,7 +5,7 @@ import img from '../../../assets/rb.jpg'
 export const RBlegsplans = [
     {
         name: 'Legs',
-        image: img,
+        image: "https://images.pexels.com/photos/6667512/pexels-photo-6667512.jpeg",
         level: 'Beginner',
         description: 'The legs plan is a beginner-level workout plan that combines resistance band exercises with bodyweight exercises to effectively target and strengthen the muscles in the legs. The primary goal of this plan is to help beginners develop leg strength and enhance overall lower body fitness.',
         noOfExercises: 12,

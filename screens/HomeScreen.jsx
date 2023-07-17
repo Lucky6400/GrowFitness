@@ -40,7 +40,7 @@ export default function HomeScreen({ navigation, route }) {
             Current Goal:
           </Text>
           <Text style={styles.goalRight}>
-           {currentGoal}
+            {currentGoal}
           </Text>
         </View>
 
@@ -81,7 +81,7 @@ export default function HomeScreen({ navigation, route }) {
               bmi
             </Text>
             <Text>
-              {!isNaN(bmi) ? bmi : "N.A"}
+              {!isNaN(bmi) ? bmi?.toFixed(2) : "N.A"}
             </Text>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>

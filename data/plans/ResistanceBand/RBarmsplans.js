@@ -1,11 +1,10 @@
 import { RBExercises } from "../../exerciseTypes/ResistanceBand/exercises";
-import img from '../../../assets/rb1.jpg'
 import { armEx } from "../../exerciseTypes/arms";
 
 export const RBarmsplans = [
     {
         name: 'Arms',
-        image: img,
+        image: "https://images.pexels.com/photos/6667512/pexels-photo-6667512.jpeg",
         level: 'Beginner',
         description: 'The plan is designed for beginners and incorporates exercises using resistance bands as well as bodyweight exercises. The plan aims to help newcomers build strength and muscle in their arms.The workout plan consists of 18 exercises in total, including a combination of resistance band exercises and bodyweight exercises. The exercises are performed with a specific number of repetitions and rest intervals between sets.',
         noOfExercises: 18,
