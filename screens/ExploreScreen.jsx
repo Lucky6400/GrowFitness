@@ -293,6 +293,14 @@ const ExploreScreen = React.memo(() => {
                       style={styles.inputStyle} placeholder="No. of Reps" keyboardType='numeric' />
                     <Button
                       onPress={() => {
+                        if(!currEx) {
+                          Alert.alert("Please select an exersize");
+                          return null;
+                        }
+                        if(!noOfReps) {
+                          Alert.alert("Please enter no. of reps");
+                          return null;
+                        }
                         setExercises(p => ([...p, {
                           ...currEx,
                           reps: noOfReps,

@@ -4,7 +4,7 @@ export const shoulderPlans = [
     {
         name: 'Shoulder Strength Builder',
         level: 'Beginner',
-        image: "https://images.pexels.com/photos/7289370/pexels-photo-7289370.jpeg",
+        bodyPart: 'shoulder',
         description: 'This beginner-level shoulder workout is designed to help build strength and enhance the development of shoulder muscles. It includes a combination of dumbbell exercises and bodyweight movements targeting the shoulders and back. The workout consists of 15 dumbbell exercises and 10 bodyweight exercises, focusing on improving overall shoulder strength and stability.',
         noOfExercises: 8,
         exercises: [
@@ -81,8 +81,8 @@ export const shoulderPlans = [
     {
         name: 'Shoulder and Back Toning',
         level: 'Intermediate',
+        bodyPart: 'shoulder',
         noOfExercises: 14,
-        image: "https://images.pexels.com/photos/7289370/pexels-photo-7289370.jpeg",
         description: 'Get ready for an intense shoulder and back toning workout with the "Shoulder and Back Toning" plan. This intermediate-level routine is designed to maximize muscle growth and strength in the shoulder and back areas. It incorporates a variety of dumbbell exercises and bodyweight movements, targeting different muscle groups within the shoulders and back. Each exercise consists of higher reps for increased muscle endurance. The plan consists of 15 dumbbell exercises and 10 bodyweight exercises, with rest periods of 30 seconds between sets.',
         exercises: [
             {

@@ -51,7 +51,15 @@ export default function ProfileScreen() {
   const [profModal, setProfModal] = useState(false);
   const [cameraModal, setCameraModal] = useState(false);
   const dispatch = useDispatch();
-  const [state, setState] = useState({});
+  const [state, setState] = useState({
+    firstName: firstName,
+    lastName: lastName,
+    currentGoal: currentGoal,
+    currHeightInFt,
+    currHeightInInch,
+    currWeight,
+    tarWeight
+  });
   const image = useSelector(s => s.fitness.image);
 
   useEffect(() => {
@@ -390,7 +398,7 @@ export default function ProfileScreen() {
         </View>
       </Modal>
 
-     
+
     </ScrollView>
   )
 }

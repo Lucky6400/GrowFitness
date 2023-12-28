@@ -3,6 +3,7 @@ import { absEx } from "../exerciseTypes/abs";
 export const absPlans = [
     {
         name: 'Abs starter',
+        bodyPart: 'abs',
         image: "https://images.pexels.com/photos/3768901/pexels-photo-3768901.jpeg",
         level: 'Beginner',
         description: 'This beginner-level abs workout is designed to help newcomers build strength and tone their abdominal muscles. It includes a combination of bodyweight exercises and targeted movements using a stability ball. The workout consists of 8 exercises, each performed for 8 reps, followed by short rest periods of 10-30 seconds between sets. By following this plan, beginners can gradually develop their core strength and improve their overall abdominal definition.',
@@ -80,6 +81,7 @@ export const absPlans = [
     },
     {
         name: 'Shredded Abs',
+        bodyPart: 'abs',
         level: 'Intermediate',
         image: "https://images.pexels.com/photos/3768901/pexels-photo-3768901.jpeg",
         noOfExercises: 14,

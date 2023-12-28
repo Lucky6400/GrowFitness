@@ -96,7 +96,8 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: secondary,
         borderRadius: 3,
-        padding: 10
+        padding: 10,
+        gap: 10
     },
     h02: {
         color: primary,
@@ -276,9 +277,10 @@ export const styles = StyleSheet.create({
         padding: 5
     },
     histCard: {
-        borderTopWidth: 1,
+        borderBottomWidth: 1,
         borderColor: '#cfcfcf',
-        padding: 5
+        padding: 5,
+        paddingVertical: 15
     },
     smallText: {
         fontSize: 12,

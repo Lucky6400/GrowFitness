@@ -7,6 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { gymMotivationalQuotes } from '../data/quotes'
 import { useSelector } from 'react-redux'
 import Plans from '../components/ChestPlans'
+import BmiComponent from '../components/BMI'
 
 export default function HomeScreen({ navigation, route }) {
   const recentPlans = useSelector(s => s.fitness.recentPlans);
@@ -80,9 +81,7 @@ export default function HomeScreen({ navigation, route }) {
             <Text style={styles.h02}>
               bmi
             </Text>
-            <Text>
-              {!isNaN(bmi) ? bmi?.toFixed(2) : "N.A"}
-            </Text>
+            <BmiComponent bmi={bmi} />
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={styles.h02}>

@@ -11,7 +11,12 @@ import { primary } from '../style/theme';
 import * as Speech from 'expo-speech';
 import { useDispatch } from 'react-redux';
 import { fitnessActions } from '../redux/fitnessSlice';
-import img from '../assets/dumbbell-press.jpg';
+import chest from '../assets/dumbbell-press.jpg';
+import abs from '../assets/abs.jpg';
+import arms from '../assets/img01.jpg';
+import shoulder from '../assets/shoulder.jpg';
+import legs from '../assets/legs.jpg';
+import rb1 from '../assets/rb1.jpg';
 import img2 from '../assets/dumbbell-flys.jpg';
 import YoutubePlayer from "react-native-youtube-iframe";
 
@@ -26,6 +31,13 @@ const Plans = ({ plans, title }) => {
     const [idx, setIdx] = useState(0);
     const [exIdx, setExIdx] = useState(0);
     const [restTime, setRestTime] = useState(plans[idx]?.exercises[exIdx]?.time || 0);
+    const imageMap = {
+        "chest": chest,
+        "abs": abs,
+        "arms": arms,
+        "legs": legs,
+        "shoulder": shoulder
+    }
     //   console.log(plans[1].image)
 
     const getDataURL = (img) => {
@@ -84,8 +96,7 @@ const Plans = ({ plans, title }) => {
                         }}>
 
                         <ImageBackground
-
-                            source={{ uri: String(v.image) }}
+                            source={v.bodyPart ? imageMap[v.bodyPart] : rb1}
                             resizeMode="cover"
                             //  defaultSource={img2}
                             //  borderRadius={10}
@@ -115,7 +126,7 @@ const Plans = ({ plans, title }) => {
                     <View style={styles.planCont}>
                         <ScrollView contentContainerStyle={styles.modalView}>
                             <Image
-                                source={{ uri: String(plans[idx].image) }}
+                                source={imageMap[plans[idx].bodyPart] || rb1}
                                 resizeMode="cover"
                                 style={{ width: '100%', height: 200, marginVertical: 10 }}
                             />
@@ -166,26 +177,6 @@ const Plans = ({ plans, title }) => {
                             <ScrollView contentContainerStyle={styles.exModalCont}>
                                 {plans[idx]?.exercises[exIdx]?.type === 'work' ? (
                                     <>
-                                        {plans[idx]?.exercises[exIdx].videoId ?
-                                            <YoutubePlayer
-                                                height={250}
-                                                play={playing}
-                                                videoId={plans[idx]?.exercises[exIdx].videoId}
-                                                initialPlayerParams={{
-                                                    start: plans[idx]?.exercises[exIdx]?.timestamp,
-                                                    end: plans[idx]?.exercises[exIdx + 2]?.timestamp,
-                                                    controls: true,
-
-                                                }}
-                                                onChangeState={e => {
-                                                    if (e === 'ended' || e === 'paused') {
-                                                        setPlaying(false);
-                                                    }
-                                                }}
-
-                                            />
-                                            : <></>}
-
                                         <Text style={styles.modalText}>
                                             {plans[idx]?.exercises[exIdx]?.name}
                                         </Text>
