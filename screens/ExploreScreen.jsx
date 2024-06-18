@@ -14,7 +14,6 @@ import { TextInput } from 'react-native'
 import { Picker } from '@react-native-picker/picker';
 import { primary } from '../style/theme'
 import { Button } from 'react-native'
-import { chestEx } from '../data/exerciseTypes/chest'
 import { useDispatch, useSelector } from 'react-redux'
 import { fitnessActions } from '../redux/fitnessSlice'
 import CustomPlans from '../components/CustomPlans'
@@ -25,16 +24,11 @@ import { armPlans } from '../data/plans/armPlans'
 import { absPlans } from '../data/plans/absPlans'
 import { shoulderPlans } from '../data/plans/shoulderPlans'
 import { legPlans } from '../data/plans/legsPlans'
-import absEx from '../data/exerciseTypes/abs'
-import { shoulderAndBackExercises } from '../data/exerciseTypes/shoulderAndBack'
-import { armEx } from '../data/exerciseTypes/arms'
-import { legExercises } from '../data/exerciseTypes/legs'
 import Banner from '../components/Banner'
 import { RBchestplans } from '../data/plans/ResistanceBand/RBchestplans'
 import { RBarmsplans } from '../data/plans/ResistanceBand/RBarmsplans'
 import { RBshoudlerplans } from '../data/plans/ResistanceBand/RBshoulderplans'
 import { RBlegsplans } from '../data/plans/ResistanceBand/RBlegsplans'
-import { RBExercises } from '../data/exerciseTypes/ResistanceBand/exercises'
 
 const ExploreScreen = React.memo(() => {
   const currentPlan = useSelector(s => s.fitness.currentPlan)
@@ -49,16 +43,6 @@ const ExploreScreen = React.memo(() => {
   const [exercises, setExercises] = useState(currentPlan ? currentPlan.exercises : []);
   const [currEx, setCurrEx] = useState(null);
   const dispatch = useDispatch();
-  let totalExercises = [...chestEx, ...absEx, ...shoulderAndBackExercises, ...armEx, ...legExercises, ...RBExercises]
-  const [allExercises, setAllExercises] = useState(totalExercises);
-
-  const obj = {
-    'Shoulder & Back': shoulderAndBackExercises,
-    'Arms': armEx,
-    'Legs': legExercises,
-    'Abs': absEx,
-    'Resistance Band': RBExercises
-  }
 
   useEffect(() => {
     //console.log(currentPlan)

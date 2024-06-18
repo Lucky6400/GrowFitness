@@ -6,8 +6,6 @@ import { styles } from '../style/styles';
 import { TouchableOpacity } from 'react-native';
 import { Modal } from 'react-native';
 import { Image } from 'react-native';
-import { Button } from 'react-native';
-import { primary } from '../style/theme';
 import * as Speech from 'expo-speech';
 import { useDispatch } from 'react-redux';
 import { fitnessActions } from '../redux/fitnessSlice';
@@ -18,7 +16,6 @@ import shoulder from '../assets/shoulder.jpg';
 import legs from '../assets/legs.jpg';
 import rb1 from '../assets/rb1.jpg';
 import img2 from '../assets/dumbbell-flys.jpg';
-import YoutubePlayer from "react-native-youtube-iframe";
 
 const speak = (text) => {
     //  const thingToSay = '1';
@@ -38,20 +35,7 @@ const Plans = ({ plans, title }) => {
         "legs": legs,
         "shoulder": shoulder
     }
-    //   console.log(plans[1].image)
-
-    const getDataURL = (img) => {
-        const fileReader = new FileReader();
-
-        fileReader.onload = function (event) {
-            const dataURL = event.target.result;
-            // Use the dataURL as needed
-            console.log(dataURL);
-            return dataURL
-        };
-
-        fileReader.readAsDataURL(img);
-    }
+   
     useEffect(() => {
         let timer;
         if (restTime > 0) {
@@ -77,7 +61,6 @@ const Plans = ({ plans, title }) => {
     }, [restTime, exIdx, idx]);
 
     const dispatch = useDispatch();
-    const [playing, setPlaying] = useState(true);
 
     return (
         <>

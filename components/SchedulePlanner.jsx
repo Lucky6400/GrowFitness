@@ -1,10 +1,8 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { styles } from '../style/styles'
-import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { primary, primaryLighter } from '../style/theme';
-import { TouchableOpacity } from 'react-native';
 import { weeks } from '../data/weeks';
 import { useSelector } from 'react-redux';
 import { schedules } from '../data/schedules/schedules';

@@ -1,13 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import React from 'react'
 import { styles } from '../style/styles'
 import { Calendar } from 'react-native-calendars';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ScrollView } from 'react-native';
 
 const ProgressScreen = () => {
-    const [selected, setSelected] = useState('');
     const markedDays = useSelector(s => s.fitness.daysMarked);
     const recentPlans = useSelector(s => s.fitness.recentPlans);
 

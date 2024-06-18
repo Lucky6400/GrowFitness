@@ -17,7 +17,6 @@ export default function HomeScreen({ navigation, route }) {
   const currWeight = useSelector(s => s.fitness.currWeight);
   const tarWeight = useSelector(s => s.fitness.tarWeight);
   const firstName = useSelector(s => s.fitness.firstName);
-  const lastName = useSelector(s => s.fitness.lastName);
   const currentGoal = useSelector(s => s.fitness.currentGoal);
   const totalWorkouts = useSelector(s => s.fitness.totalWorkouts);
 
