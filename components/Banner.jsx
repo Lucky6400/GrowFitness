@@ -17,7 +17,7 @@ const Banner = ({title}) => {
             }}></View>
 
             
-            <Text style={{ ...styles.addExTxt, color: '#000', textTransform: 'uppercase', fontWeight: 'bold' }}>{title}</Text>
+            <Text style={{ ...styles.addExTxt, color: '#000', textTransform: 'uppercase', fontWeight: "700" }}>{title}</Text>
 
 
             <View style={{

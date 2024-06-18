@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import { ImageBackground } from 'react-native';
@@ -7,8 +7,6 @@ import { TouchableOpacity } from 'react-native';
 import img from '../assets/dumbbell-press.jpg';
 import { Modal } from 'react-native';
 import { Image } from 'react-native';
-import { Button } from 'react-native';
-import { primary } from '../style/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { fitnessActions } from '../redux/fitnessSlice';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -57,43 +55,48 @@ const CustomPlans = () => {
             <Text style={styles.h01}>Custom plans</Text>
             <ScrollView horizontal>
                 {customPlans?.length > 0 ? customPlans.map((v, i) => (
-                    <ImageBackground
-                        key={i + Date.now()}
-                        source={ require('../assets/dumbbell-flys.jpg') }
-                        resizeMode="cover"
-                        style={styles.wrk01}
-
-                    >
-                        <TouchableOpacity
-                            onPress={() => {
-                                setIdx(i);
-                                setModalVisible(true);
-                                dispatch(fitnessActions.addToRecent({ ...v, date: new Date().toISOString() }))
-                            }}
-                            activeOpacity={0.8}
-                            style={{ ...styles.homeHero, backgroundColor: '#000' }}
-                        ></TouchableOpacity>
+                    <View style={{ width: Dimensions.get("window").width, paddingHorizontal: 10, borderRadius: 20, overflow: 'hidden' }} key={i + Date.now()}>
                         <TouchableOpacity
                             onPress={() => {
                                 dispatch(fitnessActions.setCurrentPlan({ ...v, index: i }));
                                 dispatch(fitnessActions.setModalVisible(true));
                             }}
                             style={styles.editBtn}>
-                            <Icon name="edit" size={24} color="#fff" />
+                            <Icon name="edit" style={{ fontSize: 32 }} color="#fff" />
                         </TouchableOpacity>
 
                         <TouchableOpacity
                             onPress={() => {
                                 dispatch(fitnessActions.deletePlan(v));
                             }}
-                            style={{ ...styles.editBtn, top: 50, backgroundColor: '#b30f00' }}>
-                            <Icon name="delete" size={24} color="#fff" />
+                            style={{ ...styles.editBtn, top: 70, backgroundColor: '#b30f00' }}>
+                            <Icon name="delete" style={{ fontSize: 32 }} color="#fff" />
                         </TouchableOpacity>
+                        <ImageBackground
+                            key={i + Date.now()}
+                            source={require('../assets/dumbbell-flys.jpg')}
+                            resizeMode="cover"
+                            style={{ ...styles.wrk01, width: "100%", height: 300, borderRadius: 20 }}
+                            imageStyle={{ borderRadius: 20 }}
 
-                        <Text style={styles.workoutName}>{v.name}</Text>
-                        <Text style={styles.planDetails}>{v.level} Level</Text>
-                        <Text style={styles.planDetails}>{v.noOfExercises} Exercises</Text>
-                    </ImageBackground>
+                        >
+                            <TouchableOpacity
+                                onPress={() => {
+                                    setIdx(i);
+                                    setModalVisible(true);
+                                    dispatch(fitnessActions.addToRecent({ ...v, date: new Date().toISOString() }))
+                                }}
+                                activeOpacity={0.8}
+                                style={{ ...styles.homeHero, backgroundColor: '#000', borderRadius: 20 }}
+                            ></TouchableOpacity>
+
+
+                            <Text style={styles.workoutName}>{v.name}</Text>
+                            <Text style={styles.planDetails}>{v.level} Level</Text>
+                            <Text style={styles.planDetails}>{v.noOfExercises} Exercises</Text>
+                            <Text style={styles.planDetails}>{v.description}</Text>
+                        </ImageBackground>
+                    </View>
                 ))
                     :
                     <Text>No plans found! Click '+' icon to add one.</Text>
@@ -123,30 +126,33 @@ const CustomPlans = () => {
                                 .filter(v => v.type === 'work')
                                 .map((v, i) => (
                                     <View key={i + Date.now()} style={styles.exCard}>
-                                        <Text style={{ fontWeight: 600 }}>{v.name}</Text>
+                                        <Text style={{ fontWeight: "600" }}>{v.name}</Text>
                                         <Text>x{v.reps}</Text>
                                     </View>
                                 ))}
                         </ScrollView>
                         <View
                             style={{
-                                width: 200,
-                                marginVertical: 10,
+                                width: '100%',
+                                marginVertical: 0,
                                 position: 'absolute',
                                 bottom: 0,
-                                left: 80,
+                                left: 0,
                             }}
                         >
-                            <Button
+                            <TouchableOpacity
                                 onPress={() => {
                                     setExIdx(0);
                                     setExModalVisible(true);
                                     speak(`Ready to go! First exercise ${customPlans[idx]?.exercises[0]?.name}`)
                                     //  Speech.speak(`Ready to go`)
                                 }}
-                                color={primary}
-                                title="Start"
-                            />
+                                style={styles.submitBtn}
+                            >
+                                <Text style={styles.submitText}>
+                                    Start
+                                </Text>
+                            </TouchableOpacity>
                         </View>
 
                         <Modal

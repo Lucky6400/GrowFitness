@@ -66,7 +66,7 @@ const Schedules = () => {
                                 setVisible(false);
                             }}
                             style={{ width: '100%', height: 60, backgroundColor: '#fff', marginTop: 20, alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={{ fontSize: 24, color: primary, fontWeight: 'bold' }}>
+                            <Text style={{ fontSize: 24, color: primary, fontWeight: "700" }}>
                                 Set as current
                             </Text>
                         </TouchableOpacity>

@@ -88,6 +88,10 @@ const Plans = ({ plans, title }) => {
             <ScrollView horizontal>
                 {plans.map((v, i) => (
                     <TouchableOpacity
+                    style={{
+                        width: 250,
+                        marginRight: 20
+                     }}
                         key={i + Date.now()}
                         onPress={() => {
                             setIdx(i);
@@ -139,7 +143,7 @@ const Plans = ({ plans, title }) => {
                                 .filter(v => v.type === 'work')
                                 .map((v, i) => (
                                     <View key={i + Date.now()} style={styles.exCard}>
-                                        <Text style={{ fontWeight: 600, textTransform: 'uppercase' }}>{v.name}</Text>
+                                        <Text style={{ fontWeight: "600", textTransform: 'uppercase' }}>{v.name}</Text>
                                         <Text>x{v.reps}</Text>
                                     </View>
                                 ))}
@@ -147,20 +151,24 @@ const Plans = ({ plans, title }) => {
                         <View
                             style={{
                                 width: '100%',
-                                marginVertical: 10,
+                                marginVertical: 0,
                                 position: 'absolute',
                                 bottom: 0,
                             }}
                         >
-                            <Button
+                            <TouchableOpacity
                                 onPress={() => {
                                     setExIdx(0);
                                     setExModalVisible(true);
                                     speak(`Ready to go! First exercise ${plans[idx]?.exercises[0]?.name}`)
+                                    //  Speech.speak(`Ready to go`)
                                 }}
-                                color={primary}
-                                title="Start"
-                            />
+                                style={styles.submitBtn}
+                            >
+                                <Text style={styles.submitText}>
+                                    Start
+                                </Text>
+                            </TouchableOpacity>
                         </View>
 
                         <Modal

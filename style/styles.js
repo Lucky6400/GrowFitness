@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     },
     heroHeading: {
         color: '#fff',
-        fontWeight: 'bold',
+        fontWeight: "700",
         fontSize: 20,
         margin: 10
     },
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
         color: '#fff',
         fontStyle: 'italic',
         fontSize: 16,
-        fontWeight: 300,
+        fontWeight: "300",
         height: 75
     },
     heroGoal: {
@@ -42,13 +42,13 @@ export const styles = StyleSheet.create({
     goalLeft: {
         color: '#fff',
         textTransform: 'uppercase',
-        fontWeight: 700,
+        fontWeight: "700",
         marginRight: 5
     },
     goalRight: {
         color: '#fff',
         textTransform: 'capitalize',
-        fontWeight: 300,
+        fontWeight: "300",
     },
     homeCenter: {
         width: '100%',
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
         paddingTop: 10,
     },
     h01: {
-        fontWeight: 600,
+        fontWeight: "600",
         fontSize: 18,
         marginVertical: 10,
         borderBottomColor: "#cfcfcf",
@@ -76,7 +76,7 @@ export const styles = StyleSheet.create({
     workoutName: {
         color: '#fff',
         textTransform: 'uppercase',
-        fontWeight: 700,
+        fontWeight: "700",
         margin: 5
     },
     workoutProgress: {
@@ -102,10 +102,10 @@ export const styles = StyleSheet.create({
     h02: {
         color: primary,
         textTransform: 'uppercase',
-        fontWeight: 600
+        fontWeight: "600"
     },
     planDetails: {
-        fontWeight: 300,
+        fontWeight: "300",
         textTransform: 'capitalize',
         fontSize: 12,
         color: "#fff",
@@ -136,7 +136,7 @@ export const styles = StyleSheet.create({
     },
     modalText: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontWeight: "700",
         width: '100%',
         textAlign: 'center',
         borderBottomWidth: 1,
@@ -146,7 +146,7 @@ export const styles = StyleSheet.create({
     },
     planDesc: {
         color: '#505050',
-        fontWeight: 500
+        fontWeight: "500"
     },
     exCard: {
         width: '100%',
@@ -175,7 +175,7 @@ export const styles = StyleSheet.create({
     bigText: {
         fontSize: 24,
         color: '#fff',
-        fontWeight: 'bold',
+        fontWeight: "700",
     },
     modalView: {
         paddingBottom: 60
@@ -186,7 +186,7 @@ export const styles = StyleSheet.create({
         width: 100,
         height: 100,
         textAlign: 'center',
-        fontWeight: 'bold',
+        fontWeight: "700",
         backgroundColor: primary,
         alignSelf: 'center',
         textAlignVertical: 'center',
@@ -217,7 +217,7 @@ export const styles = StyleSheet.create({
     customPlanHeading: {
         margin: 10,
         fontSize: 16,
-        fontWeight: 500,
+        fontWeight: "500",
     },
     addEx: {
         backgroundColor: primary,
@@ -231,7 +231,7 @@ export const styles = StyleSheet.create({
     addExTxt: {
         fontSize: 20,
         color: '#fff',
-        fontWeight: 'bold',
+        fontWeight: "700",
     },
     exCont: {
         flex: 1,
@@ -243,8 +243,8 @@ export const styles = StyleSheet.create({
     exView: {
         backgroundColor: '#fff',
         width: '90%',
-        height: 400,
-        padding: 10
+        padding: 0,
+        paddingTop: 10
     },
     exListCard: {
         width: '100%',
@@ -256,23 +256,25 @@ export const styles = StyleSheet.create({
     },
     exDesc: {
         fontSize: 12,
-        fontWeight: 600,
+        fontWeight: "600",
         color: secondary
     },
     editBtn: {
         position: 'absolute',
         top: 5,
-        right: 5,
-        width: 40,
-        height: 40,
+        right: 35,
+        width: 60,
+        height: 60,
         borderRadius: 30,
         backgroundColor: '#000',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        zIndex: 99999,
+        marginVertical: 10
     },
     schDesc: {
         color: '#fff',
-        fontWeight: 300,
+        fontWeight: "300",
         fontSize: 12,
         padding: 5
     },
@@ -305,7 +307,7 @@ export const styles = StyleSheet.create({
     },
     cardTxt: {
         fontSize: 14,
-        fontWeight: 600,
+        fontWeight: "600",
     },
     inputStyle2: {
         borderBottomWidth: 1,
@@ -341,5 +343,18 @@ export const styles = StyleSheet.create({
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    submitBtn: {
+        backgroundColor: primary,
+        justifyContent: "center",
+        textAlign: "center",
+        padding: 10,
+        marginTop: 10,
+        width: '100%'
+    },
+    submitText: {
+        color: "white",
+        textAlign: "center",
+        textTransform: "uppercase"
     }
 })

@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fitnessActions } from '../redux/fitnessSlice'
 import { Alert } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
-import { Camera, CameraType, requestCameraPermissionsAsync } from 'expo-camera';
+import { Camera, CameraView, requestCameraPermissionsAsync } from 'expo-camera';
 import DateTimePicker from '@react-native-community/datetimepicker';
 //import { Platform } from 'react-native';
 import * as Device from 'expo-device';
@@ -31,9 +31,10 @@ Notifications.setNotificationHandler({
 });
 
 export default function ProfileScreen() {
-  const [type, setType] = useState(CameraType.back);
+  const [type, setType] = useState("back");
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
+  const [camera, setCamera] = useState(null);
   const notificationListener = useRef();
   const responseListener = useRef();
   const [remiModal, setRemiModal] = useState(false);
@@ -85,7 +86,7 @@ export default function ProfileScreen() {
   }
   const askForCameraPermission = async () => {
     // const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    const { status } = await requestCameraPermissionsAsync(Camera.getCameraPermissionsAsync())
+    const { status } = await Camera.requestCameraPermissionsAsync(Camera.getCameraPermissionsAsync())
     if (status !== 'granted') {
       //  console.log('Camera permission not granted!');
     } else {
@@ -113,11 +114,11 @@ export default function ProfileScreen() {
       dispatch(fitnessActions.setProfImage(result.assets[0].uri))
     }
   };
-  const cameraRef = useRef(null);
+
 
   const takePicture = async () => {
-    if (cameraRef.current) {
-      const { uri } = await cameraRef.current.takePictureAsync();
+    if (camera) {
+      const { uri } = await camera.takePictureAsync(null);
       //  setImage(uri);
       dispatch(fitnessActions.setProfImage(uri))
       //console.log(uri);
@@ -137,17 +138,17 @@ export default function ProfileScreen() {
       >
         <View style={styles.exCont}>
           <View style={{ ...styles.exView, height: 300, width: 300, padding: 0 }}>
-            <Camera ref={cameraRef} style={{ height: 300 }} type={type}>
+            <CameraView ref={(ref) => setCamera(ref)} style={{ height: 300 }} type={type}>
               <View style={styles.buttonContainer}>
                 <TouchableOpacity style={{ ...styles.addEx, width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} onPress={toggleCameraType}>
-                  <Icon2 name="camera-flip" size={32} color="#fff" />
+                  <Icon2 name="camera-flip" style={{ fontSize: 32}} color="#fff" />
                 </TouchableOpacity>
 
                 <TouchableOpacity style={{ ...styles.addEx, width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} onPress={takePicture}>
-                  <Icon2 name="camera" size={32} color="#fff" />
+                  <Icon2 name="camera" style={{ fontSize: 32}} color="#fff" />
                 </TouchableOpacity>
               </View>
-            </Camera>
+            </CameraView>
           </View>
         </View>
       </Modal>
@@ -164,26 +165,26 @@ export default function ProfileScreen() {
       <TouchableOpacity
         onPress={() => setCameraModal(true)}
         style={{ ...styles.addEx, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 10 }}>
-        <Icon2 name="camera" size={32} color="#fff" />
+        <Icon2 name="camera" style={{ fontSize: 32}} color="#fff" />
         <Text style={styles.addExTxt}>Take Photo</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => setProfModal(true)} style={styles.profCard}>
-        <Icon name="account-circle" size={32} color={"#909090"} />
+        <Icon name="account-circle" style={{ fontSize: 32}} color={"#909090"} />
         <Text style={styles.cardTxt}>
           Account settings
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => setModal(true)} style={styles.profCard}>
-        <FontAwesomeIcon name="weight" size={32} color={"#909090"} />
+        <FontAwesomeIcon name="weight" style={{ fontSize: 32}} color={"#909090"} />
         <Text style={styles.cardTxt}>
           Current Weight
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => setCurrhModal(true)} style={styles.profCard}>
-        <Icon2 name="human-male-height" size={32} color={"#909090"} />
+        <Icon2 name="human-male-height" style={{ fontSize: 32}} color={"#909090"} />
         <Text style={styles.cardTxt}>
           Current Height
         </Text>
@@ -191,14 +192,14 @@ export default function ProfileScreen() {
 
 
       <TouchableOpacity onPress={() => setTwModal(true)} style={styles.profCard}>
-        <FontAwesomeIcon name="weight" size={32} color={"#909090"} />
+        <FontAwesomeIcon name="weight" style={{ fontSize: 32}} color={"#909090"} />
         <Text style={styles.cardTxt}>
           Target Weight
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => setRemiModal(true)} style={styles.profCard}>
-        <FontAwesomeIcon name="bell" size={32} color={"#909090"} />
+        <FontAwesomeIcon name="bell" style={{ fontSize: 32}} color={"#909090"} />
         <Text style={styles.cardTxt}>
           Set Reminder
         </Text>
@@ -208,14 +209,14 @@ export default function ProfileScreen() {
         await Notifications.cancelAllScheduledNotificationsAsync().then(res => console.log(res)).catch(err => console.log(err));
         Alert.alert("Notifications cancelled successfully!");
       }} style={styles.profCard}>
-        <FontAwesomeIcon name="bell" size={32} color={"#909090"} />
+        <FontAwesomeIcon name="bell" style={{ fontSize: 32}} color={"#909090"} />
         <Text style={styles.cardTxt}>
           Cancel all notifications
         </Text>
       </TouchableOpacity>
 
       {/* <TouchableOpacity onPress={() => setThModal(true)} style={styles.profCard}>
-        <Icon2 name="human-male-height" size={32} color={"#909090"} />
+        <Icon2 name="human-male-height" style={{ fontSize: 32}} color={"#909090"} />
         <Text style={styles.cardTxt}>
           Target Height
         </Text>

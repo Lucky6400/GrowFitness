@@ -40,7 +40,7 @@ const SchedulePlanner = () => {
                 </View>
 
                 {/* <TouchableOpacity style={{ position: "absolute", top: 10, right: 15 }}>
-                    <MaterialIcons name="edit" size={24} color="#fff" />
+                    <MaterialIcons name="edit" style={{ fontSize: 24}} color="#fff" />
                 </TouchableOpacity> */}
             </LinearGradient>
         </>
